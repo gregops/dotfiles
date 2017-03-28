@@ -59,6 +59,7 @@ Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'sickill/vim-pasta' " context-aware pasting
 Plug 'othree/html5.vim' " html5 support
 Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
+Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
 call plug#end()
 filetype plugin indent on
 syntax on
