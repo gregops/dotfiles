@@ -14,3 +14,4 @@ ln -s $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.vim/
 # ZSH
 rm -f ~/.zshrc
 ln -s $DOTFILES_DIR/zsh/.zshrc ~/
+touch ~/.zshrc.local
