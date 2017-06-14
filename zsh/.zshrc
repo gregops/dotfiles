@@ -54,8 +54,9 @@ export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 export EDITOR=vim
+export GPG_TTY=$(tty)
 
-# Git functions and aliases
+# Git fast-forward function
 function gff() {
   if [ -z "$1" -o -z "$2" ]; then
     echo "Use: gff <source branch> <target branch>"
@@ -63,6 +64,8 @@ function gff() {
   fi
   git push . ${1}:${2} && git push origin ${2}
 }
+
+# Git aliases
 alias gpl="git pull"
 alias gps="git push"
 alias gc="git commit -am"
@@ -76,6 +79,10 @@ alias vp="vagrant provision"
 alias vs="vagrant status"
 alias vgs="vagrant global-status"
 alias vssh="vagrant ssh"
+
+# Other aliases
+alias dp="unset http_proxy; unset https_proxy"
+alias vim=nvim
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' list-colors ''
