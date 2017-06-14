@@ -75,7 +75,7 @@ else
 endif
 set hlsearch
 set laststatus=2
-set guifont=Inconsolata\ for\ Powerline:h16
+set guifont=InconsolataForPowerline\ Nerd\ Font:h16
 set encoding=utf-8
 set t_Co=256
 set list
