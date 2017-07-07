@@ -104,7 +104,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 unsetopt share_history
 unsetopt nomatch
 setopt rm_star_silent
-function prompt_context() {}
+# function prompt_context() {}
 set -o vi
 export NVM_DIR="$HOME/.nvm"
 test -f /usr/local/opt/nvm/nvm.sh && . /usr/local/opt/nvm/nvm.sh
