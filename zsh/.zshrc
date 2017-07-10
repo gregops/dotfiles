@@ -106,6 +106,8 @@ unsetopt nomatch
 setopt rm_star_silent
 # function prompt_context() {}
 set -o vi
+autoload -z edit-command-line
+bindkey -M vicmd v edit-command-line
 export NVM_DIR="$HOME/.nvm"
 test -f /usr/local/opt/nvm/nvm.sh && . /usr/local/opt/nvm/nvm.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
