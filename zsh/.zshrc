@@ -84,6 +84,9 @@ alias vssh="vagrant ssh"
 alias dp="unset http_proxy; unset https_proxy"
 alias vim=nvim
 
+# OpenShift completion
+test $commands[oc] && source <(oc completion zsh)
+
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list ''

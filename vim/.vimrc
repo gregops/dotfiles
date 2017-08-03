@@ -218,8 +218,8 @@ nmap <silent> <leader>gs :Gstatus<cr>
 nmap <leader>ge :Gedit<cr>
 nmap <silent><leader>gr :Gread<cr>
 nmap <silent><leader>gb :Gblame<cr>
-nnoremap <Esc><Esc>[D :tabprevious<CR>
-nnoremap <Esc><Esc>[C :tabnext<CR>
+nnoremap <silent> <Right> :tabnext<CR>
+nnoremap <silent> <Left> :tabprevious<CR>
 nnoremap <silent> <leader>t :tabnew<CR>
 let NERDTreeShowHidden=1
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
