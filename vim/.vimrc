@@ -60,6 +60,7 @@ Plug 'sickill/vim-pasta' " context-aware pasting
 Plug 'othree/html5.vim' " html5 support
 Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
+Plug 'alvan/vim-closetag' " (X)HTML tag auto-closing
 call plug#end()
 filetype plugin indent on
 syntax on
@@ -250,7 +251,7 @@ autocmd FileType yaml setl indentkeys-=:
 let g:ctrlp_user_command = 'ag %s -i --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
 hi LineNr guifg=#999999
 set updatetime=250
-let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
 let g:gitgutter_realtime = 1
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_highlight_lines = 0
