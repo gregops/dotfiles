@@ -303,10 +303,14 @@ let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = "ab"
 let g:ansible_name_highlight = 'b'
 let g:ansible_extra_keywords_highlight = 1
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.js,*.erb'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_close_shortcut = '<leader>>'
 if has("gui_running")
   set noballooneval
 endif
-set textwidth=120
+set textwidth=0
 
 " --- Some old settings ---
 " set statusline+=%{SyntasticStatuslineFlag()}

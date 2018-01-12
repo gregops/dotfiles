@@ -49,7 +49,7 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(autojump brew gem osx rails ruby web-search docker)
 
 # User configuration
-export PATH="~/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="${HOME}/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
@@ -83,6 +83,7 @@ alias vssh="vagrant ssh"
 # Other aliases
 alias dp="unset http_proxy; unset https_proxy"
 alias vim=nvim
+alias t=todolist
 
 # OpenShift completion
 test $commands[oc] && source <(oc completion zsh)
