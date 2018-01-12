@@ -61,6 +61,7 @@ Plug 'othree/html5.vim' " html5 support
 Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
 Plug 'alvan/vim-closetag' " (X)HTML tag auto-closing
+Plug 'rhysd/vim-crystal' " Cystal Lang syntax and goodies
 call plug#end()
 filetype plugin indent on
 syntax on
