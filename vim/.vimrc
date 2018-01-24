@@ -48,9 +48,9 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
 Plug 'elzr/vim-json', { 'for': 'json' } " JSON support
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " typescript support
-Plug 'gavocanov/vim-js-indent' " JavaScript indent support
+" Plug 'gavocanov/vim-js-indent' " JavaScript indent support
 Plug 'moll/vim-node' " node support
-Plug 'othree/yajs.vim' " JavaScript syntax plugin
+" Plug 'othree/yajs.vim' " JavaScript syntax plugin
 Plug 'othree/es.next.syntax.vim' " ES6 and beyond syntax
 Plug 'mxw/vim-jsx' " JSX support
 Plug 'mattn/emmet-vim' " emmet support for vim - easily create markdup wth CSS-like syntax
@@ -62,6 +62,11 @@ Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and inde
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
 Plug 'alvan/vim-closetag' " (X)HTML tag auto-closing
 Plug 'rhysd/vim-crystal' " Cystal Lang syntax and goodies
+Plug 'pangloss/vim-javascript'
+" Plug 'chemzqm/vim-jsx-improve'
+Plug 'mxw/vim-jsx'
+Plug 'w0rp/ale'
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 filetype plugin indent on
 syntax on
@@ -193,6 +198,8 @@ augroup configgroup
   autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
+" Run eslint linter for JS files every time they're saved
+autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
 " Toggle NERDTree
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 " Expand to the path of the file in the current buffer
@@ -308,6 +315,11 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.js,*.erb'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_close_shortcut = '<leader>>'
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_sign_column_always = 1
+" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 if has("gui_running")
   set noballooneval
 endif
@@ -325,8 +337,8 @@ set textwidth=0
 " let g:instant_markdown_autostart = 0
 " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " map <D-r> :CtrlPTag<cr>
-" let g:user_emmet_leader_key='<D-d>'
-" let g:user_emmet_settings = { 'haml' : { 'extends' : 'html', } }
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = { 'haml' : { 'extends' : 'html', }, 'javascript.jsx' : { 'extends' : 'jsx', } }
 " map! <D-e> <C-y>,
 " set ttimeoutlen=10
 " set linespace=-2
