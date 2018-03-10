@@ -2,6 +2,7 @@ set nocompatible
 filetype off
 call plug#begin('~/.vim/plugged')
 set rtp+=/usr/local/opt/fzf
+
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'chriskempson/base16-vim'
@@ -35,7 +36,6 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'vim-ruby/vim-ruby'
 Plug 'jamessan/vim-gnupg'
-" Plug 'tyru/winmove.vim'
 Plug 'tpope/vim-markdown'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-github-dashboard'
@@ -54,7 +54,7 @@ Plug 'moll/vim-node' " node support
 Plug 'othree/es.next.syntax.vim' " ES6 and beyond syntax
 Plug 'mxw/vim-jsx' " JSX support
 Plug 'mattn/emmet-vim' " emmet support for vim - easily create markdup wth CSS-like syntax
-Plug 'gregsexton/MatchTag' " match tags in html, similar to paren support
+Plug 'Valloric/MatchTagAlways'
 Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'sickill/vim-pasta' " context-aware pasting
 Plug 'othree/html5.vim' " html5 support
@@ -63,10 +63,24 @@ Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
 Plug 'alvan/vim-closetag' " (X)HTML tag auto-closing
 Plug 'rhysd/vim-crystal' " Cystal Lang syntax and goodies
 Plug 'pangloss/vim-javascript'
-" Plug 'chemzqm/vim-jsx-improve'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'junegunn/vim-easy-align'
+Plug 'majutsushi/tagbar'
+Plug 'elzr/vim-json'
+Plug 'ap/vim-css-color'
+Plug 'kopischke/vim-stay'
+Plug 'Konfekt/FastFold'
+Plug 'junegunn/gv.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Shougo/deol.nvim'
+Plug 'Shougo/denite.nvim'
+Plug 'chemzqm/vim-easygit'
+Plug 'chemzqm/denite-git'
+
 call plug#end()
 filetype plugin indent on
 syntax on
@@ -125,13 +139,12 @@ set incsearch
 set nolazyredraw
 set magic
 set showmatch
-" Disable sound bells
-set noerrorbells
+set noerrorbells " Disable sound bells
 set visualbell
 set t_vb=
 set tm=500
-" Allow mouse in terminal
-" set mouse=a
+" set mouse=a " Allow mouse in terminal
+
 " Remap leader key
 let mapleader = ','
 " Toggle Limelight
@@ -230,6 +243,7 @@ nmap <silent><leader>gb :Gblame<cr>
 nnoremap <silent> <Right> :tabnext<CR>
 nnoremap <silent> <Left> :tabprevious<CR>
 nnoremap <silent> <leader>t :tabnew<CR>
+nnoremap <silent> <leader>T :TagbarToggle<CR>
 let NERDTreeShowHidden=1
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 let g:markdown_fenced_languages = ['ruby', 'python', 'css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
@@ -319,7 +333,13 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_sign_column_always = 1
+let g:indentLine_color_gui = '#333333'
+let g:indentLine_char = '▏'
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:deoplete#enable_at_startup = 1
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
 if has("gui_running")
   set noballooneval
 endif
