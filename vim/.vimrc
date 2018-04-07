@@ -254,7 +254,7 @@ hi MatchParen guifg=magenta
 hi LineNr guibg=#000000 guifg=#aaaaaa ctermbg=232
 hi SpecialKey ctermbg=none ctermfg=8
 hi NonText ctermbg=none ctermfg=8
-hi SignColumn guibg=#000000
+hi SignColumn guibg=#000000 ctermbg=0
 hi VertSplit guibg=#bf1111 guifg=#010101 ctermfg=green ctermbg=23
 hi CursorColumn ctermbg=234 guibg=#755555 guifg=#010101
 hi CursorLine ctermbg=234 guibg=#755555 guifg=#010101
@@ -271,7 +271,6 @@ endif
 autocmd FileType yaml setl ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=:
 let g:ctrlp_user_command = 'ag %s -i --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
-hi LineNr guifg=#999999
 set updatetime=250
 set signcolumn=yes
 let g:gitgutter_realtime = 1
