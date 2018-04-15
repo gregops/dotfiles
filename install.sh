@@ -21,3 +21,4 @@ rm -f ~/.zshrc
 ln -s $DOTFILES_DIR/zsh/.zshrc ~/
 touch ~/.zshrc.local
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+brew install zsh-syntax-highlighting

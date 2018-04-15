@@ -48,6 +48,8 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(autojump brew gem osx rails ruby web-search docker zsh-autosuggestions)
 
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # User configuration
 export PATH="${PATH}:${HOME}/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
