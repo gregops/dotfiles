@@ -20,3 +20,4 @@ test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ro
 rm -f ~/.zshrc
 ln -s $DOTFILES_DIR/zsh/.zshrc ~/
 touch ~/.zshrc.local
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
