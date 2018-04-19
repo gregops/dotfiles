@@ -84,7 +84,6 @@ alias vgs="vagrant global-status"
 alias vssh="vagrant ssh"
 
 # Other aliases
-alias dp="unset http_proxy; unset https_proxy"
 alias vim=nvim
 alias t=todolist
 
