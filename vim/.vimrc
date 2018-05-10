@@ -74,7 +74,6 @@ Plug 'ap/vim-css-color'
 Plug 'kopischke/vim-stay'
 Plug 'Konfekt/FastFold'
 Plug 'junegunn/gv.vim'
-Plug 'Shougo/deoplete.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/deol.nvim'
 Plug 'Shougo/denite.nvim'
@@ -336,7 +335,6 @@ let g:indentLine_color_gui = '#333333'
 let g:indentLine_char = '⎸'
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
-let g:deoplete#enable_at_startup = 1
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 if has("gui_running")
