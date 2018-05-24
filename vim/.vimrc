@@ -79,6 +79,7 @@ Plug 'Shougo/deol.nvim'
 Plug 'Shougo/denite.nvim'
 Plug 'chemzqm/vim-easygit'
 Plug 'chemzqm/denite-git'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 filetype plugin indent on
