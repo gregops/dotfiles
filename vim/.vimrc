@@ -74,12 +74,12 @@ Plug 'ap/vim-css-color'
 Plug 'kopischke/vim-stay'
 Plug 'Konfekt/FastFold'
 Plug 'junegunn/gv.vim'
-Plug 'Shougo/deoplete.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/deol.nvim'
 Plug 'Shougo/denite.nvim'
 Plug 'chemzqm/vim-easygit'
 Plug 'chemzqm/denite-git'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 filetype plugin indent on
