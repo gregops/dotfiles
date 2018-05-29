@@ -251,10 +251,10 @@ if (empty($TMUX) && has("termguicolors"))
   set termguicolors
 endif
 hi MatchParen guifg=magenta
-hi LineNr guibg=#000000 guifg=#aaaaaa ctermbg=232
+hi LineNr guibg=#000000 guifg=#aaaaaa ctermbg=232 ctermfg=249
 hi SpecialKey ctermbg=none ctermfg=8
 hi NonText ctermbg=none ctermfg=8
-hi SignColumn guibg=#000000 ctermbg=0
+hi SignColumn guibg=#000000 ctermbg=234
 hi VertSplit guibg=#bf1111 guifg=#010101 ctermfg=green ctermbg=23
 hi CursorColumn ctermbg=234 guibg=#755555 guifg=#010101
 hi CursorLine ctermbg=234 guibg=#755555 guifg=#010101
@@ -297,7 +297,7 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_theme = 'molokai'
+let g:airline_theme = 'papercolor'
 let g:airline_inactive_collapse=0
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -332,11 +332,12 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_sign_column_always = 1
-let g:indentLine_color_gui = '#333333'
+let g:indentLine_color_gui = '#444444'
+let g:indentLine_color_term = 239
 let g:indentLine_char = '⎸'
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 if has("gui_running")
