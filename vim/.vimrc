@@ -335,8 +335,8 @@ let g:ale_sign_column_always = 1
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_color_term = 239
 let g:indentLine_char = '⎸'
-let g:python2_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python2_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 " let g:deoplete#enable_at_startup = 1
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
