@@ -196,9 +196,9 @@ nnoremap <C-y> 3<C-y>
 " Navigate in wrapped lines as if they were separate lines
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap <silent> ^ g^
-nnoremap <silent> $ g$
-nnoremap <silent> 0 g0
+" nnoremap <silent> ^ g^
+" nnoremap <silent> $ g$
+" nnoremap <silent> 0 g0
 " Search for word under the cursor
 nnoremap <leader>/ "fyiw :/<c-r>f<cr>
 augroup configgroup
