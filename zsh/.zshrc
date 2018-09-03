@@ -2,7 +2,21 @@
 export ZSH=~/.oh-my-zsh
 
 # Set the theme
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE="nerdfont-complete"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context vi_mode dir rbenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time root_indicator background_jobs history time)
+POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
+POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="197"
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="255"
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="245"
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="000"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="110"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="237"
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="255"
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+KEYTIMEOUT=1
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -37,7 +51,9 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="yyyy-mm-dd"
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTSIZE=999999999
+export SAVEHIST=999999999
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -49,8 +65,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # plugins=(autojump brew gem osx rails ruby web-search docker zsh-autosuggestions)
 plugins=(autojump brew gem osx rails ruby web-search docker)
 
-test -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && \
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+test -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 export PATH="${PATH}:${HOME}/bin"
@@ -78,6 +93,10 @@ alias gs="git status"
 alias ga="git add"
 alias gco="git checkout"
 
+function tre() {
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
 # Vagrant aliases
 alias vp="vagrant provision"
 alias vs="vagrant status"
@@ -87,6 +106,10 @@ alias vssh="vagrant ssh"
 # Other aliases
 alias vim=nvim
 alias t=todolist
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # OpenShift completion
 test $commands[oc] && source <(oc completion zsh)
@@ -97,8 +120,6 @@ zstyle ':completion:*' matcher-list ''
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
-HISTSIZE=999999999
-SAVEHIST=999999999
 setopt appendhistory autocd notify
 bindkey -v
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -119,4 +140,5 @@ bindkey '^i' expand-or-complete-prefix
 export NVM_DIR="$HOME/.nvm"
 test -f /usr/local/opt/nvm/nvm.sh && . /usr/local/opt/nvm/nvm.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
