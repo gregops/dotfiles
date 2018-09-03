@@ -16,10 +16,11 @@ ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.vim/
 ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.config/nvim/
 sudo pip3 install neovim
 
-# ZSH
+# ZSH and other files/tools
 test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-rm -f ~/.zshrc
+rm -f ~/.zshrc ~/.curlrc
 ln -s $DOTFILES_DIR/zsh/.zshrc ~/
+ln -s $DOTFILES_DIR/.curlrc ~/
 touch ~/.zshrc.local
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/bhilburn/powerlevel9k.git $ZSH_CUSTOM/themes/powerlevel9k
