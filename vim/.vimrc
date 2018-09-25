@@ -339,6 +339,7 @@ let g:python2_host_prog = $HOME . '/bin/python'
 let g:python3_host_prog = $HOME . '/bin/python3'
 " let g:deoplete#enable_at_startup = 1
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+au BufRead,BufNewFile *.yaml set filetype=yaml.ansible
 
 if has("gui_running")
   set noballooneval
