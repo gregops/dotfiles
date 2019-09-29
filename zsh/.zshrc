@@ -71,7 +71,7 @@ plugins=(autojump brew gem osx rails ruby web-search docker)
 test -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
-export PATH="${PATH}:${HOME}/bin:/usr/local/sbin"
+export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:/usr/local/sbin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8

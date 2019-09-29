@@ -19,8 +19,6 @@ Plug 'MarcWeber/vim-addon-mw-utils' " required by snipmate
 Plug 'tomtom/tlib_vim' " required by snipmate
 Plug 'ervandew/supertab'
 Plug 'garbas/vim-snipmate' " snippet manager
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' " add end keyword in ruby
 Plug 'tpope/vim-fugitive'
@@ -37,53 +35,57 @@ Plug 'xolox/vim-session'
 Plug 'vim-ruby/vim-ruby'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-markdown'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/vim-github-dashboard'
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
-Plug 'groenewege/vim-less', { 'for': 'less' } " less support
-Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] } " set the background of hex color values to the color
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " CSS3 syntax support
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
 Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
-Plug 'elzr/vim-json', { 'for': 'json' } " JSON support
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " typescript support
-" Plug 'gavocanov/vim-js-indent' " JavaScript indent support
-Plug 'moll/vim-node' " node support
-" Plug 'othree/yajs.vim' " JavaScript syntax plugin
-Plug 'othree/es.next.syntax.vim' " ES6 and beyond syntax
-Plug 'mxw/vim-jsx' " JSX support
-Plug 'mattn/emmet-vim' " emmet support for vim - easily create markdup wth CSS-like syntax
 Plug 'Valloric/MatchTagAlways'
 Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'sickill/vim-pasta' " context-aware pasting
-Plug 'othree/html5.vim' " html5 support
 Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
 Plug 'alvan/vim-closetag' " (X)HTML tag auto-closing
-Plug 'rhysd/vim-crystal' " Cystal Lang syntax and goodies
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
-Plug 'majutsushi/tagbar'
 Plug 'elzr/vim-json'
-Plug 'ap/vim-css-color'
-Plug 'kopischke/vim-stay'
-Plug 'Konfekt/FastFold'
-Plug 'junegunn/gv.vim'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'Shougo/deol.nvim'
-Plug 'Shougo/denite.nvim'
 Plug 'chemzqm/vim-easygit'
-Plug 'chemzqm/denite-git'
 Plug 'hashivim/vim-terraform'
+Plug 'farmergreg/vim-lastplace'
+" Plug 'chemzqm/denite-git'
+" Plug 'ntpeters/vim-better-whitespace'
+" Plug 'kchmck/vim-coffee-script'
+" Plug 'Shougo/deol.nvim'
+" Plug 'Shougo/denite.nvim'
+" Plug 'ap/vim-css-color'
+" Plug 'kopischke/vim-stay'
+" Plug 'Konfekt/FastFold'
+" Plug 'junegunn/gv.vim'
+" Plug 'majutsushi/tagbar'
+" Plug 'rhysd/vim-crystal' " Cystal Lang syntax and goodies
+" Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+" Plug 'othree/html5.vim' " html5 support
+" Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/vim-github-dashboard'
+" Plug 'groenewege/vim-less', { 'for': 'less' } " less support
+" Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] } " set the background of hex color values to the color
+" Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " CSS3 syntax support
+" Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
+" Plug 'elzr/vim-json', { 'for': 'json' } " JSON support
+" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " typescript support
+" Plug 'gavocanov/vim-js-indent' " JavaScript indent support
+" Plug 'moll/vim-node' " node support
+" Plug 'othree/yajs.vim' " JavaScript syntax plugin
+" Plug 'othree/es.next.syntax.vim' " ES6 and beyond syntax
+" Plug 'mxw/vim-jsx' " JSX support
+" Plug 'mattn/emmet-vim' " emmet support for vim - easily create markdup wth CSS-like syntax
 
 call plug#end()
 filetype plugin indent on
 syntax on
+set nomodeline
 set relativenumber
 set viewoptions=cursor,folds,slash,unix
 set number
@@ -96,7 +98,8 @@ else
 endif
 set hlsearch
 set laststatus=2
-set guifont=InconsolataForPowerline\ Nerd\ Font:h16
+" set guifont=InconsolataForPowerline\ Nerd\ Font:h16
+set guifont=SFMono\ Nerd\ Font:h18
 set encoding=utf-8
 set t_Co=256
 set list
@@ -144,6 +147,7 @@ set visualbell
 set t_vb=
 set tm=500
 " set mouse=a " Allow mouse in terminal
+set omnifunc=syntaxcomplete#Complete
 
 " Remap leader key
 let mapleader = ','
