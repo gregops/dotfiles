@@ -113,6 +113,8 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias k=kubectl
+alias tf=terraform
 
 # OpenShift completion
 test $commands[oc] && source <(oc completion zsh)

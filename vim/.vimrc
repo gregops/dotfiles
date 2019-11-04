@@ -53,6 +53,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'chemzqm/vim-easygit'
 Plug 'hashivim/vim-terraform'
 Plug 'farmergreg/vim-lastplace'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'vimwiki/vimwiki'
 " Plug 'chemzqm/denite-git'
 " Plug 'ntpeters/vim-better-whitespace'
 " Plug 'kchmck/vim-coffee-script'
@@ -103,7 +105,7 @@ set guifont=SFMono\ Nerd\ Font:h18
 set encoding=utf-8
 set t_Co=256
 set list
-set listchars=tab:→\ ,trail:⋅,extends:❯,precedes:❮
+set listchars=tab:\ \ ,trail:⋅,extends:❯,precedes:❮
 set fillchars+=stl:\ ,vert:\ ,stlnc:\ 
 set termencoding=utf-8
 set ruler
@@ -146,8 +148,8 @@ set noerrorbells " Disable sound bells
 set visualbell
 set t_vb=
 set tm=500
-" set mouse=a " Allow mouse in terminal
 set omnifunc=syntaxcomplete#Complete
+set mouse=a " Allow mouse in terminal
 
 " Remap leader key
 let mapleader = ','
@@ -172,6 +174,8 @@ vmap <leader>[ <gv
 vmap <leader>] >gv
 nmap <leader>[ <<
 nmap <leader>] >>
+" Mac clipboard support
+vmap '' :w !pbcopy<CR><CR>
 " Enable . command in visual mode
 vnoremap . :normal .<cr>
 " Window moving/creating shortcuts
@@ -209,9 +213,9 @@ augroup configgroup
   autocmd!
   " Automatically resize panes on resize
   autocmd VimResized * exe 'normal! \<c-w>='
-  " Automatically reload vimrc
-  autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
-  autocmd BufWritePost .vimrc.local source %
+  " Automatically reload vimrc - breaks theming!
+  " autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
+  " autocmd BufWritePost .vimrc.local source %
   autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
@@ -244,6 +248,9 @@ nmap <silent> <leader>gs :Gstatus<cr>
 nmap <leader>ge :Gedit<cr>
 nmap <silent><leader>gr :Gread<cr>
 nmap <silent><leader>gb :Gblame<cr>
+nmap <M-Right> :bn!<CR>
+nmap <M-Left> :bp!<CR>
+nmap <silent><leader>d :bd!<cr>
 nnoremap <silent> <Right> :tabnext<CR>
 nnoremap <silent> <Left> :tabprevious<CR>
 nnoremap <silent> <leader>t :tabnew<CR>
@@ -341,6 +348,7 @@ let g:indentLine_color_term = 239
 let g:indentLine_char = '⎸'
 let g:python2_host_prog = $HOME . '/bin/python'
 let g:python3_host_prog = $HOME . '/bin/python3'
+let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.md'}]
 " let g:deoplete#enable_at_startup = 1
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 au BufRead,BufNewFile *.yaml set filetype=yaml.ansible
