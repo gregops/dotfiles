@@ -127,7 +127,7 @@ set foldmethod=syntax
 set foldnestmax=6
 set nofoldenable
 set foldlevel=1
-" set clipboard=unnamed
+set clipboard=unnamed
 set ttyfast
 set diffopt+=vertical
 set laststatus=2
