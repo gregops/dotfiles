@@ -5,102 +5,65 @@ set rtp+=/usr/local/opt/fzf
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'chriskempson/base16-vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " typescript support
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'mhinz/vim-startify'
 Plug 'MarcWeber/vim-addon-mw-utils' " required by snipmate
 Plug 'tomtom/tlib_vim' " required by snipmate
-Plug 'ervandew/supertab'
 Plug 'garbas/vim-snipmate' " snippet manager
+Plug 'ervandew/supertab'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' " add end keyword in ruby
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
+Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
+" Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround' " quotes, parens etc auto-closing
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'benmills/vimux' " tmux integration for vim
 Plug 'airblade/vim-gitgutter'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-session'
 Plug 'vim-ruby/vim-ruby'
 Plug 'jamessan/vim-gnupg'
-Plug 'tpope/vim-markdown'
-Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] } " markdown support
-Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
 Plug 'Valloric/MatchTagAlways'
 Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'sickill/vim-pasta' " context-aware pasting
 Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
-Plug 'alvan/vim-closetag' " (X)HTML tag auto-closing
-Plug 'w0rp/ale'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine' " Indentation lines for code
 Plug 'junegunn/vim-easy-align'
-Plug 'elzr/vim-json'
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'elzr/vim-json', { 'for': 'json' } " JSON support
 Plug 'chemzqm/vim-easygit'
 Plug 'hashivim/vim-terraform'
 Plug 'farmergreg/vim-lastplace'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator' " Navigate TMUX panes and Vim splits
+Plug 'benmills/vimux' " Run commands in a new TMUX pane from Vim
 Plug 'vimwiki/vimwiki'
-" Plug 'chemzqm/denite-git'
-" Plug 'ntpeters/vim-better-whitespace'
-" Plug 'kchmck/vim-coffee-script'
-" Plug 'Shougo/deol.nvim'
-" Plug 'Shougo/denite.nvim'
-" Plug 'ap/vim-css-color'
-" Plug 'kopischke/vim-stay'
-" Plug 'Konfekt/FastFold'
-" Plug 'junegunn/gv.vim'
-" Plug 'majutsushi/tagbar'
-" Plug 'rhysd/vim-crystal' " Cystal Lang syntax and goodies
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
-" Plug 'othree/html5.vim' " html5 support
-" Plug 'junegunn/limelight.vim'
-" Plug 'junegunn/vim-github-dashboard'
-" Plug 'groenewege/vim-less', { 'for': 'less' } " less support
-" Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] } " set the background of hex color values to the color
-" Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " CSS3 syntax support
-" Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' } " sass scss syntax support
-" Plug 'elzr/vim-json', { 'for': 'json' } " JSON support
-" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " typescript support
-" Plug 'gavocanov/vim-js-indent' " JavaScript indent support
-" Plug 'moll/vim-node' " node support
-" Plug 'othree/yajs.vim' " JavaScript syntax plugin
-" Plug 'othree/es.next.syntax.vim' " ES6 and beyond syntax
-" Plug 'mxw/vim-jsx' " JSX support
-" Plug 'mattn/emmet-vim' " emmet support for vim - easily create markdup wth CSS-like syntax
+Plug 'b4b4r07/vim-hcl'
+Plug 'ap/vim-css-color' " Set background of CSS colors in Vim
+Plug 'junegunn/gv.vim' " Git commit viewer
 
 call plug#end()
 filetype plugin indent on
 syntax on
+
+colorscheme flattown
+
 set nomodeline
 set relativenumber
 set viewoptions=cursor,folds,slash,unix
 set number
 set expandtab
 set background=dark
-if has("gui_running")
-  colorscheme flattown
-else
-  colorscheme flattown
-endif
 set hlsearch
 set laststatus=2
-" set guifont=InconsolataForPowerline\ Nerd\ Font:h16
 set guifont=SFMono\ Nerd\ Font:h18
 set encoding=utf-8
 set t_Co=256
@@ -130,7 +93,6 @@ set foldlevel=1
 set clipboard=unnamed
 set ttyfast
 set diffopt+=vertical
-set laststatus=2
 set wildmenu
 set wildmode=list:longest
 set scrolloff=3
@@ -150,11 +112,15 @@ set t_vb=
 set tm=500
 set omnifunc=syntaxcomplete#Complete
 set mouse=a " Allow mouse in terminal
+set termguicolors
+set guioptions-=L
+set guioptions-=r
+set updatetime=250
+set signcolumn=yes
+set textwidth=0
 
 " Remap leader key
 let mapleader = ','
-" Toggle Limelight
-nmap <leader>l :Limelight!!<cr>
 " Quick write and quit
 nmap <leader>x :x<cr>
 " Quick quit
@@ -169,11 +135,6 @@ set pastetoggle=<leader>v
 noremap <space> :set hlsearch! hlsearch?<cr>
 " Remove extra whitespace (entire file)
 nmap <leader><space> :%s/\s\+$<cr>
-" Indentation
-vmap <leader>[ <gv
-vmap <leader>] >gv
-nmap <leader>[ <<
-nmap <leader>] >>
 " Mac clipboard support
 vmap '' :w !pbcopy<CR><CR>
 " Enable . command in visual mode
@@ -220,12 +181,11 @@ augroup configgroup
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
 " Run eslint linter for JS files every time they're saved
-autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+" autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
 " Toggle NERDTree
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 " Expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
-let g:fzf_layout = { 'down': '~25%' }
 if isdirectory(".git")
   " if in a git project, use :GFiles
   nmap <silent> <leader>p :GFiles<cr>
@@ -251,46 +211,44 @@ nmap <silent><leader>gb :Gblame<cr>
 nmap <M-Right> :bn!<CR>
 nmap <M-Left> :bp!<CR>
 nmap <silent><leader>d :bd!<cr>
-nnoremap <silent> <Right> :tabnext<CR>
-nnoremap <silent> <Left> :tabprevious<CR>
-nnoremap <silent> <leader>t :tabnew<CR>
-nnoremap <silent> <leader>T :TagbarToggle<CR>
+" nnoremap <silent> <Right> :tabnext<CR>
+" nnoremap <silent> <Left> :tabprevious<CR>
+" nnoremap <silent> <leader>t :tabnew<CR>
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+let g:fzf_layout = { 'down': '~25%' }
 let NERDTreeShowHidden=1
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 let g:markdown_fenced_languages = ['ruby', 'python', 'css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
-if (empty($TMUX) && has("termguicolors"))
-  set termguicolors
-endif
-hi MatchParen guifg=magenta
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" hi MatchParen term=underline cterm=underline gui=underline
+" hi MatchParen guifg=magenta
 hi LineNr guibg=#000000 guifg=#aaaaaa ctermbg=232 ctermfg=249
 hi SpecialKey ctermbg=none ctermfg=8
 hi NonText ctermbg=none ctermfg=8
 hi SignColumn guibg=#000000 ctermbg=234
 hi VertSplit guibg=#bf1111 guifg=#010101 ctermfg=green ctermbg=23
-hi CursorColumn ctermbg=234 guibg=#755555 guifg=#010101
-hi CursorLine ctermbg=234 guibg=#755555 guifg=#010101
+hi CursorColumn ctermbg=234 guibg=#333333
+hi CursorLine ctermbg=234 guibg=#333333
 " hi! StatusLine ctermfg=green ctermbg=darkred
 " hi! StatusLineNC ctermfg=green ctermbg=darkred
 " highlight VertSplit cterm=NONE ctermfg=Green ctermbg=White guibg=#B0B0B0 guifg=#B0B0B0
-set guioptions-=L
-set guioptions-=r
-if executable('ag')
-  set grepprg=ag\ --nogroup
-  let g:ctrlp_user_command = 'ag %s -l -g ""'
-  let g:ctrlp_use_caching = 0
-endif
+
 autocmd FileType yaml setl ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=:
-let g:ctrlp_user_command = 'ag %s -i --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
-set updatetime=250
-set signcolumn=yes
+
 let g:gitgutter_realtime = 1
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_highlight_lines = 0
-let g:ruby_operators=1
-let g:session_autosave=0
-let b:surround_{char2nr('=')} = "<%= \r %>"
-let b:surround_{char2nr('-')} = "<% \r %>"
+" let g:ruby_operators=1
+" let g:session_autosave=0
+" let b:surround_{char2nr('=')} = "<%= \r %>"
+" let b:surround_{char2nr('-')} = "<% \r %>"
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -328,9 +286,21 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tabs_label = 'tabs'
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>+ <Plug>AirlineSelectNextTab
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_section_c = '%<%<%m %F %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+
 let g:vim_json_syntax_conceal = 0
-let g:jsx_ext_required = 0
 let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = "ab"
 let g:ansible_name_highlight = 'b'
@@ -339,40 +309,19 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.js,*.erb'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_close_shortcut = '<leader>>'
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_sign_column_always = 1
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_color_term = 239
 let g:indentLine_char = '⎸'
-let g:python2_host_prog = $HOME . '/bin/python'
-let g:python3_host_prog = $HOME . '/bin/python3'
+let g:python3_host_prog = $HOME . '/bin/python'
+let g:python2_host_prog = $HOME . '/bin/python2'
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.md'}]
-" let g:deoplete#enable_at_startup = 1
-" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 au BufRead,BufNewFile *.yaml set filetype=yaml.ansible
+"
+" let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+" let g:ale_sign_warning = '.'
+" let g:ale_sign_column_always = 1
+" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 if has("gui_running")
   set noballooneval
 endif
-set textwidth=0
-
-" --- Some old settings ---
-" set statusline+=%{SyntasticStatuslineFlag()}
-" nmap <F7> :SyntasticToggleMode<CR>
-" nmap <F8> :TagbarToggle<CR>
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_check_on_w = 0
-" let g:instant_markdown_autostart = 0
-" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-" map <D-r> :CtrlPTag<cr>
-let g:user_emmet_leader_key='<Tab>'
-let g:user_emmet_settings = { 'haml' : { 'extends' : 'html', }, 'javascript.jsx' : { 'extends' : 'jsx', } }
-" map! <D-e> <C-y>,
-" set ttimeoutlen=10
-" set linespace=-2
-" let g:Powerline_symbols = 'unicode'

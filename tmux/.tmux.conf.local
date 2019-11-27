@@ -64,11 +64,11 @@ tmux_conf_theme_pane_border_style=thin
 
 # pane borders colours:
 tmux_conf_theme_pane_border='#444444'                   # gray
-tmux_conf_theme_pane_active_border='#00afff'            # light blue
+tmux_conf_theme_pane_active_border='#ff5555'            # light red
 
 # pane indicator colours
-tmux_conf_theme_pane_indicator='#00afff'                # light blue
-tmux_conf_theme_pane_active_indicator='#00afff'         # light blue
+tmux_conf_theme_pane_indicator='#ff5555'                # light red
+tmux_conf_theme_pane_active_indicator='#ff5555'         # light red
 
 # status line style
 tmux_conf_theme_message_fg='#000000'                    # black

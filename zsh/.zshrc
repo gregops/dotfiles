@@ -3,10 +3,11 @@ export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
 
 # Set the theme
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME=powerlevel10k/powerlevel10k
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context vi_mode dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time root_indicator background_jobs history time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status)
 POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="197"
@@ -66,9 +67,10 @@ export SAVEHIST=999999999
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(autojump brew gem osx rails ruby web-search docker zsh-autosuggestions)
-plugins=(autojump brew gem osx rails ruby web-search docker)
+# plugins=(autojump brew gem osx rails ruby web-search docker)
+plugins=(autojump brew osx docker)
 
-test -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:/usr/local/sbin"
@@ -95,6 +97,7 @@ alias gd="git diff"
 alias gs="git status"
 alias ga="git add"
 alias gco="git checkout"
+alias gt="git tag"
 
 function tre() {
   tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
@@ -115,9 +118,7 @@ alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias k=kubectl
 alias tf=terraform
-
-# OpenShift completion
-test $commands[oc] && source <(oc completion zsh)
+alias tg=terragrunt
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' list-colors ''
