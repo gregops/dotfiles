@@ -52,13 +52,6 @@ COMPLETION_WAITING_DOTS="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-export HIST_STAMPS="yyyy-mm-dd"
-export HISTSIZE=999999999
-export SAVEHIST=999999999
-
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -76,6 +69,14 @@ test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /
 export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:/usr/local/sbin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTSIZE=999999999
+export SAVEHIST=999999999
+
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export GPG_TTY=$(tty)
