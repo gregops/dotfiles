@@ -316,7 +316,17 @@ let g:python3_host_prog = $HOME . '/bin/python'
 let g:python2_host_prog = $HOME . '/bin/python2'
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.md'}]
 au BufRead,BufNewFile *.yaml set filetype=yaml.ansible
-"
+
+" Keybase saltpack auto-encryption/decryption
+augroup SALTPACK
+  au!
+  au BufReadPre,FileReadPre *.saltpack set viminfo=
+  au BufReadPre,FileReadPre *.saltpack set noswapfile noundofile nobackup
+  au BufReadPost,FileReadPost *.saltpack :%!keybase decrypt 2>/dev/null
+  au BufWritePre,FileReadPre *.saltpack :exec "%!keybase encrypt $(keybase id -j | jq -r '.username')"
+  au BufWritePost,FileReadPost *.saltpack u
+augroup END
+
 " let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 " let g:ale_sign_warning = '.'
 " let g:ale_sign_column_always = 1
