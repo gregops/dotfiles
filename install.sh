@@ -1,5 +1,7 @@
 #!/bin/sh
 
+pip3 install neovim
+
 # Dotfiles location
 DOTFILES_DIR=~/.dotfiles
 
@@ -14,14 +16,13 @@ ln -sf $DOTFILES_DIR/vim/vim-plug/plug.vim ~/.vim/autoload/
 ln -sf $DOTFILES_DIR/vim/vim-plug/plug.vim ~/.config/nvim/autoload/
 ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.vim/
 ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.config/nvim/
-sudo pip3 install neovim
 
 # ZSH and other files/tools
 test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-rm -f ~/.zshrc ~/.curlrc
+rm -f ~/.zshrc ~/.curlrc ~/.tmux.conf ~/.tmux.conf.local
 ln -s $DOTFILES_DIR/zsh/.zshrc ~/
 ln -s $DOTFILES_DIR/.curlrc ~/
+ln -s $DOTFILES_DIR/tmux/.tmux.conf ~/
+ln -s $DOTFILES_DIR/tmux/.tmux.conf.local ~/
 touch ~/.zshrc.local
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/bhilburn/powerlevel9k.git $ZSH_CUSTOM/themes/powerlevel9k
-brew install zsh-syntax-highlighting
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
