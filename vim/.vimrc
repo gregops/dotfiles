@@ -324,7 +324,7 @@ augroup SALTPACK
   au BufReadPre,FileReadPre *.saltpack set noswapfile noundofile nobackup
   au BufReadPost,FileReadPost *.saltpack :%!keybase decrypt 2>/dev/null
   au BufWritePre,FileReadPre *.saltpack :exec "%!keybase encrypt $(keybase id -j | jq -r '.username')"
-  au BufWritePost,FileReadPost *.saltpack u
+  au BufWritePost,FileReadPost *.saltpack silent u
 augroup END
 
 " let g:ale_sign_error = '●' " Less aggressive than the default '>>'
