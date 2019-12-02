@@ -332,6 +332,15 @@ augroup END
 " let g:ale_sign_column_always = 1
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
+" From https://z0mbix.io/2018/03/28/quickly-access-terraform-docs-from-the-cli-or-vim/
+if executable('tfdoc')
+  command! -nargs=* Tfdoc :call system('tfdoc' . ' ' . <q-args>)
+endif
+nnoremap <silent> <Leader>tr :Tfdoc <C-R><C-W><CR>
+nnoremap <silent> <Leader>td :Tfdoc -d <C-R><C-W><CR>
+xnoremap <silent> <Leader>tr y:Tfdoc <C-R>"<CR>
+xnoremap <silent> <Leader>td y:Tfdoc -d <C-R>"<CR>
+
 if has("gui_running")
   set noballooneval
 endif
