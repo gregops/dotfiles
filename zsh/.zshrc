@@ -78,7 +78,7 @@ export HISTSIZE=999999999
 export SAVEHIST=999999999
 
 export LANG=en_US.UTF-8
-export EDITOR=vim
+export EDITOR=nvim
 export GPG_TTY=$(tty)
 
 # Git fast-forward function
