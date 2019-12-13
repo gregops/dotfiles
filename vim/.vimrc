@@ -49,6 +49,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'b4b4r07/vim-hcl'
 Plug 'ap/vim-css-color' " Set background of CSS colors in Vim
 Plug 'junegunn/gv.vim' " Git commit viewer
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'mustache' }
 
 call plug#end()
 filetype plugin indent on
@@ -326,6 +327,8 @@ augroup SALTPACK
   au BufWritePre,FileReadPre *.saltpack :exec "%!keybase encrypt $(keybase id -j | jq -r '.username')"
   au BufWritePost,FileReadPost *.saltpack silent u
 augroup END
+
+au BufRead,BufNewFile *.tpl set filetype=mustache
 
 " let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 " let g:ale_sign_warning = '.'
