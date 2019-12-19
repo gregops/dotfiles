@@ -316,7 +316,10 @@ let g:indentLine_char = '⎸'
 let g:python3_host_prog = $HOME . '/bin/python'
 let g:python2_host_prog = $HOME . '/bin/python2'
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.md'}]
+
 au BufRead,BufNewFile *.yaml set filetype=yaml.ansible
+au BufRead,BufNewFile *.tpl set filetype=mustache
+au BufRead,BufNewFile *.json set filetype=javascript
 
 " Keybase saltpack auto-encryption/decryption
 augroup SALTPACK
@@ -327,8 +330,6 @@ augroup SALTPACK
   au BufWritePre,FileReadPre *.saltpack :exec "%!keybase encrypt $(keybase id -j | jq -r '.username')"
   au BufWritePost,FileReadPost *.saltpack silent u
 augroup END
-
-au BufRead,BufNewFile *.tpl set filetype=mustache
 
 " let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 " let g:ale_sign_warning = '.'
