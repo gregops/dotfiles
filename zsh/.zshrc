@@ -1,3 +1,6 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
@@ -6,10 +9,12 @@ export TERM="xterm-256color"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME=powerlevel10k/powerlevel10k
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir kubecontext vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status)
-POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
-POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs command_execution_time status newline prompt_char)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext aws public_ip)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status)
+# POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
+# POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="197"
 POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="255"
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="245"
@@ -20,6 +25,12 @@ POWERLEVEL9K_CONTEXT_REMOTE_FOREGROUND="255"
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="237"
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="255"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+POWERLEVEL9K_TRANSIENT_PROMPT=always
+POWERLEVEL9K_INSTANT_PROMPT=verbose
+POWERLEVEL9K_DISABLE_HOT_RELOAD=true
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='$'
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='$'
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='$'
 KEYTIMEOUT=1
 
 # Uncomment the following line to use case-sensitive completion.
@@ -66,7 +77,7 @@ plugins=(autojump brew osx docker)
 test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
-export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:/usr/local/sbin"
+export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -112,7 +123,7 @@ alias vssh="vagrant ssh"
 
 # Other aliases
 alias vim=nvim
-alias t=todolist
+alias t=todo.sh
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
@@ -131,25 +142,25 @@ export NVM_DIR="$HOME/.nvm"
 test -s "/usr/local/opt/nvm/nvm.sh" && . "/usr/local/opt/nvm/nvm.sh"
 
 # Change cursor shape for different vi modes.
-# function zle-keymap-select {
-#   if [[ ${KEYMAP} == vicmd ]] ||
-#      [[ $1 = 'block' ]]; then
-#     echo -ne '\e[2 q'
-#   elif [[ ${KEYMAP} == main ]] ||
-#        [[ ${KEYMAP} == viins ]] ||
-#        [[ ${KEYMAP} = '' ]] ||
-#        [[ $1 = 'beam' ]]; then
-#     echo -ne '\e[6 q'
-#   fi
-# }
-# zle -N zle-keymap-select
-# zle-line-init() {
-#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-#     echo -ne "\e[6 q"
-# }
-# zle -N zle-line-init
-# echo -ne '\e[6 q' # Use beam shape cursor on startup.
-# preexec() { echo -ne '\e[6 q' ;} # Use beam shape cursor for each new prompt.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[2 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[6 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[6 q"
+}
+zle -N zle-line-init
+echo -ne '\e[6 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[6 q' ;} # Use beam shape cursor for each new prompt.
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' list-colors ''

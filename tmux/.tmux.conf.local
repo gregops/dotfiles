@@ -295,3 +295,7 @@ set -g mode-keys vi
 
 # move status line to top
 #set -g status-position top
+
+# set -g pane-border-status bottom
+# set -g pane-border-format '#(sh ~/.dotfiles/bin/pane-border-format.sh --pane-current-path=#{pane_current_path} --pane-active=#{pane_active})'
+# set -s status-interval 1

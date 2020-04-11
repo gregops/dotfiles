@@ -32,7 +32,7 @@ Plug 'xolox/vim-misc'
 Plug 'vim-ruby/vim-ruby'
 Plug 'jamessan/vim-gnupg'
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
-Plug 'Valloric/MatchTagAlways'
+" Plug 'Valloric/MatchTagAlways'
 Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'sickill/vim-pasta' " context-aware pasting
 Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
