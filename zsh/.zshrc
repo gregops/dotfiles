@@ -142,6 +142,7 @@ alias npmgl="npm list -g --depth=0"
 alias npml="npm list --depth=0"
 alias di="docker images"
 alias dps="docker ps"
+alias c=clear
 
 export NVM_DIR="$HOME/.nvm"
 test -s "/usr/local/opt/nvm/nvm.sh" && . "/usr/local/opt/nvm/nvm.sh"

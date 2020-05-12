@@ -50,6 +50,7 @@ Plug 'b4b4r07/vim-hcl'
 Plug 'ap/vim-css-color' " Set background of CSS colors in Vim
 Plug 'junegunn/gv.vim' " Git commit viewer
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'mustache' }
+Plug 'aserebryakov/vim-todo-lists'
 
 call plug#end()
 filetype plugin indent on
