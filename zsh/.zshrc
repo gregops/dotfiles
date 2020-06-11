@@ -81,7 +81,7 @@ plugins=(autojump brew osx docker)
 test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
-export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin"
+export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 

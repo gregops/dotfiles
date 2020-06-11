@@ -241,7 +241,7 @@ hi CursorLine ctermbg=234 guibg=#333333
 " hi! StatusLineNC ctermfg=green ctermbg=darkred
 " highlight VertSplit cterm=NONE ctermfg=Green ctermbg=White guibg=#B0B0B0 guifg=#B0B0B0
 
-autocmd FileType yaml setl ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setl ts=4 sts=4 sw=4 expandtab
 autocmd FileType yaml setl indentkeys-=:
 
 let g:gitgutter_realtime = 1
@@ -321,6 +321,7 @@ let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '
 au BufRead,BufNewFile *.yaml set filetype=yaml.ansible
 au BufRead,BufNewFile *.tpl set filetype=mustache
 au BufRead,BufNewFile *.json set filetype=javascript
+au BufRead,BufNewFile Dockerfile* set filetype=Dockerfile
 
 " Keybase saltpack auto-encryption/decryption
 augroup SALTPACK
