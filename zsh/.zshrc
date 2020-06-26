@@ -4,6 +4,11 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
+export SHELL=/usr/bin/zsh
+export QT_SCALE_FACTOR=1.75
+export QT_FONT_DPI=168
+
+xset r rate 240 50
 
 # Set the theme
 # ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -28,6 +33,11 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
 POWERLEVEL9K_TRANSIENT_PROMPT=always
 POWERLEVEL9K_INSTANT_PROMPT=verbose
 POWERLEVEL9K_DISABLE_HOT_RELOAD=true
+
+POWERLEVEL9K_DIR_BACKGROUND="deepskyblue4"
+POWERLEVEL9K_KUBECONTEXT_BACKGROUND="magenta3"
+POWERLEVEL9K_STATUS_BACKGROUND="grey19"
+POWERLEVEL9K_PROMPT_CHAR_BACKGROUND="grey27"
 
 # typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
 # typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION=''
@@ -75,15 +85,17 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(autojump brew gem osx rails ruby web-search docker zsh-autosuggestions)
-# plugins=(autojump brew gem osx rails ruby web-search docker)
-plugins=(autojump brew osx docker)
+plugins=(autojump docker)
 
-test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
-export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin"
+export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
+
+mkdir -p ${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -145,7 +157,7 @@ alias dps="docker ps"
 alias c=clear
 
 export NVM_DIR="$HOME/.nvm"
-test -s "/usr/local/opt/nvm/nvm.sh" && . "/usr/local/opt/nvm/nvm.sh"
+test -s "$NVM_DIR/nvm.sh" && . "$NVM_DIR/nvm.sh"
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {

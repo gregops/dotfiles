@@ -18,7 +18,7 @@ ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.vim/
 ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.config/nvim/
 
 # ZSH and other files/tools
-test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 rm -f ~/.zshrc ~/.curlrc ~/.tmux.conf ~/.tmux.conf.local
 ln -s $DOTFILES_DIR/zsh/.zshrc ~/
 ln -s $DOTFILES_DIR/.curlrc ~/

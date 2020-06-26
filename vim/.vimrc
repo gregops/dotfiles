@@ -318,7 +318,7 @@ let g:python3_host_prog = $HOME . '/bin/python'
 let g:python2_host_prog = $HOME . '/bin/python2'
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.md'}]
 
-au BufRead,BufNewFile *.yaml set filetype=yaml.ansible
+au BufRead,BufNewFile *.yaml set filetype=yaml
 au BufRead,BufNewFile *.tpl set filetype=mustache
 au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile Dockerfile* set filetype=Dockerfile
