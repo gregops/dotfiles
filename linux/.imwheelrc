@@ -1,0 +1,6 @@
+"^slack$"
+  None, Up, Button4, 4
+  None, Down, Button5, 4
+"^mongodb compass$"
+  None, Up, Button4, 4
+  None, Down, Button5, 4
