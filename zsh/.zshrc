@@ -90,7 +90,7 @@ plugins=(autojump docker)
 test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
-export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin"
+export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -155,6 +155,8 @@ alias npml="npm list --depth=0"
 alias di="docker images"
 alias dps="docker ps"
 alias c=clear
+alias open=xdg-open
+alias o=xdg-open
 
 export NVM_DIR="$HOME/.nvm"
 test -s "$NVM_DIR/nvm.sh" && . "$NVM_DIR/nvm.sh"

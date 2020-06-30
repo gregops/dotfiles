@@ -92,7 +92,7 @@ set foldmethod=syntax
 set foldnestmax=6
 set nofoldenable
 set foldlevel=1
-set clipboard=unnamed
+set clipboard+=unnamedplus
 set ttyfast
 set diffopt+=vertical
 set wildmenu
