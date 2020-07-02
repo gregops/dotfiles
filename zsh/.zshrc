@@ -210,3 +210,7 @@ test -f /usr/local/opt/nvm/nvm.sh && . /usr/local/opt/nvm/nvm.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
+
+g() {
+  grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform "$@" . | fzf --bind "enter:execute(nvim {})"
+}

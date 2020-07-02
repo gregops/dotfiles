@@ -1,9 +1,9 @@
 set nocompatible
 filetype off
 call plug#begin('~/.vim/plugged')
-set rtp+=/usr/local/opt/fzf
 
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
