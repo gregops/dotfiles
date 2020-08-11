@@ -5,8 +5,8 @@ fi
 export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
 export SHELL=/usr/bin/zsh
-export QT_SCALE_FACTOR=1.75
-export QT_FONT_DPI=168
+# export QT_SCALE_FACTOR=1.75
+# export QT_FONT_DPI=168
 
 xset r rate 240 50
 
@@ -90,7 +90,8 @@ plugins=(autojump docker)
 test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
-export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin"
+export GOPATH=${HOME}/.go
+export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$GOPATH/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -212,5 +213,5 @@ export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
 
 g() {
-  grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform "$@" . | fzf --bind "enter:execute(nvim {})"
+  grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform "$@" . | fzf -0 --bind "enter:execute(nvim {})"
 }

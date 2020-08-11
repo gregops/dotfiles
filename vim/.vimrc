@@ -229,7 +229,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " hi MatchParen term=underline cterm=underline gui=underline
-" hi MatchParen guifg=magenta
+hi MatchParen guibg=magenta
 hi LineNr guibg=#000000 guifg=#aaaaaa ctermbg=232 ctermfg=249
 hi SpecialKey ctermbg=none ctermfg=8
 hi NonText ctermbg=none ctermfg=8
@@ -321,7 +321,7 @@ let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '
 au BufRead,BufNewFile *.yaml set filetype=yaml
 au BufRead,BufNewFile *.tpl set filetype=mustache
 au BufRead,BufNewFile *.json set filetype=javascript
-au BufRead,BufNewFile Dockerfile* set filetype=Dockerfile
+au BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
 
 " Keybase saltpack auto-encryption/decryption
 augroup SALTPACK
