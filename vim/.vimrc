@@ -251,7 +251,7 @@ let g:gitgutter_highlight_lines = 0
 " let g:session_autosave=0
 " let b:surround_{char2nr('=')} = "<%= \r %>"
 " let b:surround_{char2nr('-')} = "<% \r %>"
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
