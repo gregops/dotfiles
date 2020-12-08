@@ -5,10 +5,15 @@ fi
 export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
 export SHELL=/usr/local/bin/zsh
+
+# Linux-specific
+# export SHELL=/usr/bin/zsh
 # export QT_SCALE_FACTOR=1.75
 # export QT_FONT_DPI=168
-
 # xset r rate 240 50
+# alias open=xdg-open
+# alias o=xdg-open
+# alias open=xdg-open
 
 # Set the theme
 # ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -157,8 +162,6 @@ alias npml="npm list --depth=0"
 alias di="docker images"
 alias dps="docker ps"
 alias c=clear
-# alias open=xdg-open
-alias o=xdg-open
 
 export NVM_DIR="$HOME/.nvm"
 test -s "$NVM_DIR/nvm.sh" && . "$NVM_DIR/nvm.sh"
