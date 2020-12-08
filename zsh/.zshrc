@@ -4,11 +4,11 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
-export SHELL=/usr/bin/zsh
+export SHELL=/usr/local/bin/zsh
 # export QT_SCALE_FACTOR=1.75
 # export QT_FONT_DPI=168
 
-xset r rate 240 50
+# xset r rate 240 50
 
 # Set the theme
 # ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -88,10 +88,11 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(autojump docker)
 
 test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 export GOPATH=${HOME}/.go
-export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$GOPATH/bin"
+export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$GOPATH/bin:/usr/local/opt/mysql-client/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -156,7 +157,7 @@ alias npml="npm list --depth=0"
 alias di="docker images"
 alias dps="docker ps"
 alias c=clear
-alias open=xdg-open
+# alias open=xdg-open
 alias o=xdg-open
 
 export NVM_DIR="$HOME/.nvm"
@@ -214,4 +215,24 @@ test -f ~/.zshrc.local && . ~/.zshrc.local
 
 g() {
   grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform "$@" . | fzf -0 --bind "enter:execute(nvim {})"
+}
+
+urlencode() {
+  old_lc_collate=$LC_COLLATE
+  LC_COLLATE=C
+  local length="${#1}"
+  for (( i = 0; i < length; i++ )); do
+    local c="${1:$i:1}"
+    case $c in
+      [a-zA-Z0-9.~_-]) printf '%s' "$c" ;;
+      *) printf '%%%02X' "'$c" ;;
+    esac
+  done
+
+  LC_COLLATE=$old_lc_collate
+}
+
+urldecode() {
+  local url_encoded="${1//+/ }"
+  printf '%b' "${url_encoded//%/\\x}"
 }

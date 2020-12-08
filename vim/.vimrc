@@ -3,7 +3,6 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -241,7 +240,7 @@ hi CursorLine ctermbg=234 guibg=#333333
 " hi! StatusLineNC ctermfg=green ctermbg=darkred
 " highlight VertSplit cterm=NONE ctermfg=Green ctermbg=White guibg=#B0B0B0 guifg=#B0B0B0
 
-autocmd FileType yaml setl ts=4 sts=4 sw=4 expandtab
+autocmd FileType yaml setl ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=:
 
 let g:gitgutter_realtime = 1
@@ -251,7 +250,7 @@ let g:gitgutter_highlight_lines = 0
 " let g:session_autosave=0
 " let b:surround_{char2nr('=')} = "<%= \r %>"
 " let b:surround_{char2nr('-')} = "<% \r %>"
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
