@@ -147,6 +147,7 @@ alias vssh="vagrant ssh"
 
 # Other aliases
 alias vim=nvim
+alias v=nvim
 alias t=todo.sh
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
@@ -217,7 +218,19 @@ export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
 
 g() {
-  grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform "$@" . | fzf -0 --bind "enter:execute(nvim {})"
+  grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform "$@" . | fzf -0 --bind "enter:execute(nvim {})" --preview 'bat --style=numbers --color=always --line-range :500 {}'
+}
+
+gl ()
+{
+  git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"  | \
+   fzf --ansi --no-sort --reverse --tiebreak=index --preview \
+   'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
+   --bind "shift-down:preview-down,shift-up:preview-up,pgdn:preview-page-down,pgup:preview-page-up,enter:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=never % | nvim \"+set bt=nofile\"') << 'FZF-EOF'
+                {}
+FZF-EOF" --preview-window=right:60%
 }
 
 urlencode() {
@@ -239,3 +252,5 @@ urldecode() {
   local url_encoded="${1//+/ }"
   printf '%b' "${url_encoded//%/\\x}"
 }
+
+function gam() { "/Users/greg/bin/gam/gam" "$@" ; }
