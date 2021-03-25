@@ -97,7 +97,7 @@ test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /
 
 # User configuration
 export GOPATH=${HOME}/.go
-export PATH="/usr/local/opt/ruby/bin:${PATH}:${HOME}/bin:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$GOPATH/bin:/usr/local/opt/mysql-client/bin"
+export PATH="${HOME}/bin:/usr/local/opt/ruby/bin:${PATH}:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$GOPATH/bin:/usr/local/opt/mysql-client/bin"
 export MANPATH="/usr/local/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -163,6 +163,7 @@ alias npml="npm list --depth=0"
 alias di="docker images"
 alias dps="docker ps"
 alias c=clear
+alias dockerprune="docker image prune --force && docker system prune -a -f"
 
 export NVM_DIR="$HOME/.nvm"
 test -s "$NVM_DIR/nvm.sh" && . "$NVM_DIR/nvm.sh"
@@ -203,7 +204,7 @@ type brew >/dev/null && [[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-unsetopt share_history
+setopt share_history
 unsetopt nomatch
 setopt rm_star_silent
 # function prompt_context() {}
@@ -218,7 +219,7 @@ export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
 
 g() {
-  grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform "$@" . | fzf -0 --bind "enter:execute(nvim {})" --preview 'bat --style=numbers --color=always --line-range :500 {}'
+  grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform --exclude *.svg --exclude *.plist --exclude package-lock.json --exclude yarn.lock --exclude .gitignore "$@" . | fzf -0 --bind "enter:execute(nvim {})" --preview 'bat --style=numbers --color=always --line-range :500 {}'
 }
 
 gl ()
