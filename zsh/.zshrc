@@ -163,7 +163,7 @@ alias npml="npm list --depth=0"
 alias di="docker images"
 alias dps="docker ps"
 alias c=clear
-alias dockerprune="docker image prune --force && docker system prune -a -f"
+alias dockerprune="docker image prune --force && docker system prune -a -f --volumes"
 
 export NVM_DIR="$HOME/.nvm"
 test -s "$NVM_DIR/nvm.sh" && . "$NVM_DIR/nvm.sh"
