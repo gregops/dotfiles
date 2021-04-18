@@ -11,15 +11,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'MarcWeber/vim-addon-mw-utils' " required by snipmate
-Plug 'tomtom/tlib_vim' " required by snipmate
-Plug 'garbas/vim-snipmate' " snippet manager
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' " add end keyword in ruby
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
-" Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround' " quotes, parens etc auto-closing
 Plug 'tpope/vim-ragtag'
@@ -43,13 +40,13 @@ Plug 'chemzqm/vim-easygit'
 Plug 'hashivim/vim-terraform'
 Plug 'farmergreg/vim-lastplace'
 Plug 'christoomey/vim-tmux-navigator' " Navigate TMUX panes and Vim splits
-Plug 'benmills/vimux' " Run commands in a new TMUX pane from Vim
+" Plug 'benmills/vimux' " Run commands in a new TMUX pane from Vim
 Plug 'vimwiki/vimwiki'
 Plug 'b4b4r07/vim-hcl'
 Plug 'ap/vim-css-color' " Set background of CSS colors in Vim
 Plug 'junegunn/gv.vim' " Git commit viewer
-Plug 'mustache/vim-mustache-handlebars', { 'for': 'mustache' }
-Plug 'aserebryakov/vim-todo-lists'
+" Plug 'mustache/vim-mustache-handlebars', { 'for': 'mustache' }
+" Plug 'aserebryakov/vim-todo-lists'
 
 call plug#end()
 filetype plugin indent on
@@ -70,7 +67,7 @@ set encoding=utf-8
 set t_Co=256
 set list
 set listchars=tab:\ \ ,trail:⋅,extends:❯,precedes:❮
-set fillchars+=stl:\ ,vert:\ ,stlnc:\ 
+set fillchars+=stl:\ ,vert:\ ,stlnc:\
 set termencoding=utf-8
 set ruler
 set backspace=indent,eol,start
@@ -226,6 +223,17 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 let g:markdown_fenced_languages = ['ruby', 'python', 'css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+:endfunction
+
+au FileWritePre * :call TrimWhiteSpace()
+au FileAppendPre * :call TrimWhiteSpace()
+au FilterWritePre * :call TrimWhiteSpace()
+au BufWritePre * :call TrimWhiteSpace()
 
 " hi MatchParen term=underline cterm=underline gui=underline
 hi MatchParen guibg=magenta
