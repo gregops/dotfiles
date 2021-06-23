@@ -8,7 +8,7 @@ xcode-select --install
 brew analytics off
 
 # Install Brew casks
-brew cask install 1password bettertouchtool caffeine calibre docker drawio dropbox firefox google-chrome google-cloud-sdk google-photos-backup-and-sync iterm2 java karabiner-elements keybase lastpass osxfuse skype slack smoothscroll spotify tigervnc-viewer tunnelblick vagrant vault virtualbox visual-studio-code vlc xquartz
+brew install 1password bettertouchtool caffeine docker firefox google-chrome iterm2 karabiner-elements keybase smoothscroll tigervnc-viewer
 
 # Install Brew packages
-brew install ansible autojump awscli coreutils curl dep direnv docker docker-completion docker-compose dos2unix azure/draft/draft exiftool ffmpeg flac fontconfig freetype fzf gettext git gnupg go graphviz helm htop imagemagick irssi jq derailed/k9s/k9s kubernetes-cli kubernetes-helm lua midnight-commander minikube mkcert mplayer mpv neovim nmap openssl packer perl pwgen python yq ruby versent/homebrew-taps/saml2aws screen scrub skaffold sqlite sshfs telnet terraform terragrunt tmux todo-txt tree unrar weechat wget xz zsh zsh-autosuggestions
+brew install autojump coreutils curl dep direnv docker docker-completion docker-compose dos2unix exiftool ffmpeg flac fontconfig freetype fzf gettext git gnupg go graphviz htop imagemagick jq lua midnight-commander mkcert mplayer mpv neovim nmap openssl perl pwgen python yq ruby screen sshfs telnet tmux tree unrar wget xz zsh zsh-autosuggestions
