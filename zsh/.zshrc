@@ -1,10 +1,19 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+sysctl -b machdep.cpu.brand_string | grep ^Apple >/dev/null
+if [ $? ]; then
+  export BREW_PATH=/opt/homebrew
+  alias brew="arch -arm64 brew"
+else
+  export BREW_PATH=/usr/local
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export TERM="xterm-256color"
-export SHELL=/usr/local/bin/zsh
+export SHELL=${BREW_PATH}/bin/zsh
 
 # Linux-specific
 # export SHELL=/usr/bin/zsh
@@ -92,13 +101,14 @@ COMPLETION_WAITING_DOTS="true"
 # plugins=(autojump brew gem osx rails ruby web-search docker zsh-autosuggestions)
 plugins=(autojump docker)
 
-test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+test -f /${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# test -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 export GOPATH=${HOME}/.go
-export PATH="${HOME}/bin:/usr/local/opt/ruby/bin:${PATH}:${HOME}/.krew/bin:/usr/local/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$GOPATH/bin:/usr/local/opt/mysql-client/bin"
-export MANPATH="/usr/local/share/man:$MANPATH"
+export PATH="${HOME}/bin:/${BREW_PATH}/opt/ruby/bin:${PATH}:${HOME}/.krew/bin:/${BREW_PATH}/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:$GOPATH/bin:/${BREW_PATH}/opt/mysql-client/bin"
+export MANPATH="/${BREW_PATH}/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
 mkdir -p ${ZDOTDIR:-~}/.zsh_functions
@@ -213,7 +223,7 @@ autoload -z edit-command-line
 bindkey -M vicmd v edit-command-line
 bindkey '^i' expand-or-complete-prefix
 export NVM_DIR="$HOME/.nvm"
-test -f /usr/local/opt/nvm/nvm.sh && . /usr/local/opt/nvm/nvm.sh
+test -f /${BREW_PATH}/opt/nvm/nvm.sh && . /${BREW_PATH}/opt/nvm/nvm.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
