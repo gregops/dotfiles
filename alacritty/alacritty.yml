@@ -68,14 +68,16 @@ font:
   # Style can be specified to pick a specific face.
   normal:
     family: GohuFont Nerd Font
-    weight: 1000
-    # style: Bold
+    # weight: 1000
+    # style: Regular
+
     # family: iMWritingMonoS Nerd Font
     # family: SFMono Nerd Font
     # family: FantasqueSansMono Nerd Font
-    # family: InconsolataGo Nerd Font
+    # family: Inconsolata Nerd Font
     # family: JetBrainsMono Nerd Font
     # family: RobotoMono Nerd Font
+
     # family: 3270Narrow Nerd Font
     # family: 3270SemiNarrow Nerd Font
     # family: agave Nerd Font
@@ -123,17 +125,25 @@ font:
     # family: UbuntuMono Nerd Font
     # family: VictorMono Nerd Font
 
+
   # The bold font face
   bold:
     family: GohuFont Nerd Font
     style: Bold
+    # family: Iosevka
+    # family: "Fira Code"
+    # family: "Source Code Pro"
 
   # The italic font face
   italic:
     family: GohuFont Nerd Font
+    # family: Iosevka
+    # family: "Fira Code"
+    # family: "Source Code Pro"
     # style: "Medium Italic"
 
   # Point size of the font
+  # size: 14
   size: 17.5
 
   # Offset is the extra space around each character. offset.y can be thought of
@@ -174,6 +184,7 @@ draw_bold_text_with_bright_colors: true
 
 # Colors
 colors:
+  # Default colours
   primary:
     foreground: '0xffffff'
     background: '0x0e0e0e'
@@ -182,6 +193,7 @@ colors:
   # the cursor colour will be the inverse of the cell colour.
   # cursor:
   #   text: '0x2e2e2d'
+  #   # text: '0x000000'
   #   cursor: '0xffffff'
 
   # Normal colors
@@ -216,6 +228,35 @@ colors:
     magenta: '0xcc99cc'
     cyan:    '0x66cccc'
     white:   '0xdddddd'
+
+  # Tomorrow Night Bright
+  # primary:
+  #   background: '0x000000'
+  #   foreground: '0xeaeaea'
+  #
+  # cursor:
+  #   text: '0x000000'
+  #   cursor: '0xffffff'
+  #
+  # normal:
+  #   black:   '0x000000'
+  #   red:     '0xd54e53'
+  #   green:   '0xb9ca4a'
+  #   yellow:  '0xe6c547'
+  #   blue:    '0x7aa6da'
+  #   magenta: '0xc397d8'
+  #   cyan:    '0x70c0ba'
+  #   white:   '0xffffff'
+  #
+  # bright:
+  #   black:   '0x666666'
+  #   red:     '0xff3334'
+  #   green:   '0x9ec400'
+  #   yellow:  '0xe7c547'
+  #   blue:    '0x7aa6da'
+  #   magenta: '0xb77ee0'
+  #   cyan:    '0x54ced6'
+  #   white:   '0xffffff'
 
   # Indexed Colors
   #
@@ -424,6 +465,15 @@ key_bindings:
   - { key: Back,     mods: Alt,           chars: "\x1b\x7f"                    }
   - { key: Insert,                        chars: "\x1b[2~"                     }
   - { key: Delete,                        chars: "\x1b[3~"                     }
+
+    # shortcuts for tmux. the leader key is control-b (0x02)
+  - { key: Q,        mods: Control,       chars: "\x02&"                       }  # close tab (kill)
+  - { key: T,        mods: Command,       chars: "\x02c"                       }  # new tab
+  # - { key: RBracket, mods: Command|Shift, chars: "\x02o"                       }  # select next tab
+  # - { key: LBracket, mods: Command|Shift, chars: "\x02;"                       }  # select previous tab
+  # - { key: RBracket, mods: Control,       chars: "\x02n"                       }  # select next pane
+  # - { key: LBracket, mods: Control,       chars: "\x02p"                       }  # select last (previously used) pane
+  - { key: F,        mods: Command,       chars: "\x02/"                       }  # search (upwards) (see tmux.conf)
 
 mouse:
   # Click settings
