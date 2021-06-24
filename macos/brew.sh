@@ -11,4 +11,4 @@ brew analytics off
 brew install 1password bettertouchtool caffeine docker firefox google-chrome iterm2 karabiner-elements keybase smoothscroll tigervnc-viewer
 
 # Install Brew packages
-brew install autojump bat coreutils curl dep direnv docker docker-completion docker-compose dos2unix exiftool ffmpeg flac fontconfig freetype fzf gettext git gnupg go graphviz htop imagemagick jq lua midnight-commander mkcert mplayer mpv neovim nmap openssl perl pwgen python yq ruby screen sshfs telnet tmux tree unrar wget xz zsh zsh-autosuggestions
+brew install autojump bash bat coreutils curl dep direnv docker docker-completion docker-compose dos2unix exiftool ffmpeg flac fontconfig freetype fzf gettext git gnupg go graphviz htop imagemagick jq lua midnight-commander mkcert mplayer mpv neovim nmap openssl perl pwgen python yq ruby screen sshfs telnet tmux tree unrar wget xz zsh zsh-autosuggestions
