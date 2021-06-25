@@ -3,7 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 sysctl -b machdep.cpu.brand_string | grep ^Apple >/dev/null
-if [ $? ]; then
+if [ $? -eq 0 ]; then
   export BREW_PATH=/opt/homebrew
   alias brew="arch -arm64 brew"
 else
