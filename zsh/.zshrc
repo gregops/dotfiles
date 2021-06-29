@@ -4,11 +4,10 @@ fi
 
 sysctl -b machdep.cpu.brand_string | grep ^Apple >/dev/null
 if [ $? ]; then
-  export BREW_PATH=/opt/homebrew
   alias brew="arch -arm64 brew"
 else
-  export BREW_PATH=/usr/local
 fi
+export BREW_PATH=$(brew --prefix)
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -107,8 +106,8 @@ test -f /${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh && sourc
 
 # User configuration
 export GOPATH=${HOME}/.go
-export PATH="${HOME}/bin:/${BREW_PATH}/opt/ruby/bin:${PATH}:${HOME}/.krew/bin:/${BREW_PATH}/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:$GOPATH/bin:/${BREW_PATH}/opt/mysql-client/bin"
-export MANPATH="/${BREW_PATH}/share/man:$MANPATH"
+export PATH="${HOME}/bin:${BREW_PATH}/opt/coreutils/libexec/gnubin:${BREW_PATH}/opt/ruby/bin:${PATH}:${HOME}/.krew/bin:${BREW_PATH}/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:$GOPATH/bin:${BREW_PATH}/opt/mysql-client/bin"
+export MANPATH="${BREW_PATH}/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
 mkdir -p ${ZDOTDIR:-~}/.zsh_functions
