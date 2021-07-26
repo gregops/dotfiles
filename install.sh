@@ -27,6 +27,10 @@ ln -s $DOTFILES_DIR/tmux/.tmux.conf.local ~/
 touch ~/.zshrc.local
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
+# Additional Tmux configuration
+git clone https://github.com/tmux-plugins/tpm ~/.dotfiles/tmux/plugins/tpm
+ln -s ~/.dotfiles/tmux ~/.config/tmux
+
 # Scripts
 mkdir -p $HOME/bin
 chmod 700 $HOME/bin
