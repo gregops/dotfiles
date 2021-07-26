@@ -91,7 +91,6 @@ set foldnestmax=6
 set nofoldenable
 set foldlevel=1
 set clipboard+=unnamedplus
-set ttyfast
 set diffopt+=vertical
 set wildmenu
 set wildmode=list:longest
@@ -117,6 +116,7 @@ set guioptions-=L
 set guioptions-=r
 set updatetime=250
 set signcolumn=yes
+set colorcolumn=80
 set textwidth=0
 
 " Remap leader key
