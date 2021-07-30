@@ -67,72 +67,42 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-    family: GohuFont Nerd Font
+    # family: GohuFont Nerd Font
     # weight: 1000
-    # style: Regular
+    style: Regular
 
-    # family: iMWritingMonoS Nerd Font
-    # family: SFMono Nerd Font
-    # family: FantasqueSansMono Nerd Font
-    # family: Inconsolata Nerd Font
-    # family: JetBrainsMono Nerd Font
-    # family: RobotoMono Nerd Font
-
-    # family: 3270Narrow Nerd Font
-    # family: 3270SemiNarrow Nerd Font
-    # family: agave Nerd Font
-    # family: Anonymice Nerd Font
-    # family: Arimo Nerd Font
-    # family: AurulentSansMono Nerd Font
+    # family: BigBlue_TerminalPlus Nerd Font
+    # family: BigBlue_Terminal_437TT Nerd Font
     # family: BitstreamVeraSansMono Nerd Font
     # family: BlexMono Nerd Font
     # family: CaskaydiaCove Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: Cousine Nerd Font
-    # family: DaddyTimeMono Nerd Font
     # family: DejaVuSansMono Nerd Font
-    # family: DroidSansMono Nerd Font
+    # family: FantasqueSansMono Nerd Font
     # family: FiraCode Nerd Font
-    # family: FiraMono Nerd Font
     # family: FuraCode Nerd Font
-    # family: FuraMono Nerd Font
-    # family: GoMono Nerd Font
     # family: Hack Nerd Font
-    # family: Hasklug Nerd Font
-    # family: HeavyData Nerd Font
-    # family: Hurmit Nerd Font
-    # family: Lekton Nerd Font
+    # family: InconsolataGo Nerd Font
+    # family: JetBrainsMono Nerd Font
     # family: LiterationMono Nerd Font
-    # family: MesloLGSDZ Nerd Font
     # family: MesloLGS Nerd Font
-    # family: Monofurbold Nerd Font
-    # family: Monofuritalic Nerd Font
-    # family: Monofur Nerd Font
-    # family: Monoid Nerd Font
-    # family: mononoki Nerd Font
+    # family: NotoMono Nerd Font
     # family: NotoSansMono Nerd Font
     # family: OverpassMono Nerd Font
-    # family: ProFontIIx Nerd Font
-    # family: ProFontWindows Nerd Font
-    # family: ProggyCleanTTCE Nerd Font
-    # family: ProggyCleanTT Nerd Font
-    # family: ProggyCleanTTSZ Nerd Font
-    # family: SauceCodePro Nerd Font
-    # family: ShureTechMono Nerd Font
-    # family: SpaceMono Nerd Font
-    # family: TerminessTTF Nerd Font
-    # family: TerminessTTF NF
+    family: RobotoMono Nerd Font
+    # family: SFMono Nerd Font
     # family: UbuntuMono Nerd Font
     # family: VictorMono Nerd Font
-
-
-  # The bold font face
-  bold:
-    family: GohuFont Nerd Font
-    style: Bold
-    # family: Iosevka
-    # family: "Fira Code"
-    # family: "Source Code Pro"
+    # family: iMWritingMonoS Nerd Font
+    # family: mononoki Nerd Font
+  # # The bold font face
+  # bold:
+    # family: GohuFont Nerd Font
+    # style: Bold
+    # # family: Iosevka
+    # # family: "Fira Code"
+    # # family: "Source Code Pro"
 
   # The italic font face
   italic:
@@ -144,7 +114,7 @@ font:
 
   # Point size of the font
   # size: 14
-  size: 17.5
+  size: 15.5
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -393,10 +363,10 @@ background_opacity: 1.0
 #
 key_bindings:
   - { key: A,        mods: Command,       chars: "\x01"                        }
-  - { key: H,        mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-pane", "-L"] } }
-  - { key: L,        mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-pane", "-R"] } }
-  - { key: J,        mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-pane", "-D"] } }
-  - { key: K,        mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-pane", "-U"] } }
+  - { key: H,        mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-L"] } }
+  - { key: L,        mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-R"] } }
+  - { key: J,        mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-D"] } }
+  - { key: K,        mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-U"] } }
   - { key: V,        mods: Command,       action: Paste                        }
   - { key: V,        mods: Alt,           chars: "\x16"                        }
   - { key: C,        mods: Command,       action: Copy                         }
@@ -408,17 +378,27 @@ key_bindings:
   - { key: Home,                          chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                           chars: "\x1bOF",   mode: AppCursor   }
   - { key: End,                           chars: "\x1b[F",   mode: ~AppCursor  }
-  - { key: H,        mods: Alt,           command: { program: "/opt/homebrew/bin/tmux", args: ["previous-window"] } }
-  - { key: L,        mods: Alt,           command: { program: "/opt/homebrew/bin/tmux", args: ["next-window"] } }
-  - { key: Key1,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "1"] } }
-  - { key: Key2,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "2"] } }
-  - { key: Key3,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "3"] } }
-  - { key: Key4,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "4"] } }
-  - { key: Key5,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "5"] } }
-  - { key: Key6,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "6"] } }
-  - { key: Key7,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "7"] } }
-  - { key: Key8,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "8"] } }
-  - { key: Key9,     mods: Command,       command: { program: "/opt/homebrew/bin/tmux", args: ["select-window", "-t", "9"] } }
+  - { key: H,        mods: Alt,           command: { program: "/usr/local/bin/tmux", args: ["previous-window"] } }
+  - { key: L,        mods: Alt,           command: { program: "/usr/local/bin/tmux", args: ["next-window"] } }
+  - { key: Key1,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "1"] } }
+  - { key: Key2,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "2"] } }
+  - { key: Key3,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "3"] } }
+  - { key: Key4,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "4"] } }
+  - { key: Key5,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "5"] } }
+  - { key: Key6,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "6"] } }
+  - { key: Key7,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "7"] } }
+  - { key: Key8,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "8"] } }
+  - { key: Key9,     mods: Command,       command: { program: "/usr/local/bin/tmux", args: ["select-window", "-t", "9"] } }
+  - { key: Key0,     mods: Alt,           chars: "\x1b0"                       }
+  - { key: Key1,     mods: Alt,           chars: "\x1b1"                       }
+  - { key: Key2,     mods: Alt,           chars: "\x1b2"                       }
+  - { key: Key3,     mods: Alt,           chars: "\x1b3"                       }
+  - { key: Key4,     mods: Alt,           chars: "\x1b4"                       }
+  - { key: Key5,     mods: Alt,           chars: "\x1b5"                       }
+  - { key: Key6,     mods: Alt,           chars: "\x1b6"                       }
+  - { key: Key7,     mods: Alt,           chars: "\x1b7"                       }
+  - { key: Key8,     mods: Alt,           chars: "\x1b8"                       }
+  - { key: Key9,     mods: Alt,           chars: "\x1b9"                       }
   - { key: Equals,   mods: Command,       action: IncreaseFontSize             }
   - { key: Minus,    mods: Command,       action: DecreaseFontSize             }
   - { key: Minus,    mods: Command|Shift, action: ResetFontSize                }
@@ -573,7 +553,7 @@ debug:
   #   - Info
   #   - Debug
   #   - Trace
-  log_level: OFF
+  log_level: WARN
 
   # Print all received window events.
   print_events: false

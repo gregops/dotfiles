@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pip3 install neovim
+pip3 install neovim neovim-remote
 
 # Dotfiles location
 DOTFILES_DIR=~/.dotfiles
@@ -16,6 +16,7 @@ ln -sf $DOTFILES_DIR/vim/vim-plug/plug.vim ~/.vim/autoload/
 ln -sf $DOTFILES_DIR/vim/vim-plug/plug.vim ~/.config/nvim/autoload/
 ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.vim/
 ln -sf $DOTFILES_DIR/vim/vim-colorschemes/colors ~/.config/nvim/
+ln -sf $DOTFILES_DIR/vim/lua ~/.config/nvim
 
 # ZSH and other files/tools
 test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
