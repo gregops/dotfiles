@@ -37,3 +37,7 @@ mkdir -p $HOME/bin
 chmod 700 $HOME/bin
 chmod 700 $DOTFILES_DIR/bin/*
 ln -sf $DOTFILES_DIR/bin/* $HOME/bin
+
+# LSPs
+npm i -g bash-language-server dockerfile-language-server-nodejs vscode-langservers-extracted
+gem install --user-install solargraph

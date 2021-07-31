@@ -45,9 +45,12 @@ Plug 'junegunn/gv.vim' " Git commit viewer
 " Plug 'aserebryakov/vim-todo-lists'
 
 if has("nvim-0.5")
-  " Plug 'hrsh7th/nvim-compe' | Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/nvim-compe'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
+  Plug 'rafamadriz/friendly-snippets'
+  Plug 'neovim/nvim-lspconfig'
   " Plug 'kosayoda/nvim-lightbulb'
-  " Plug 'neovim/nvim-lspconfig'
   " Plug 'nvim-lua/lsp_extensions.nvim'
   " Plug 'nvim-lua/lsp-status.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
@@ -69,6 +72,7 @@ if has("nvim-0.5")
   Plug 'edluffy/specs.nvim'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'haringsrob/nvim_context_vt'
+  Plug 'folke/trouble.nvim'
 endif
 call plug#end()
 
@@ -81,10 +85,13 @@ if has("nvim-0.5")
   lua require('nvim-ts-context-commentstring-config')
   lua require('nvim-web-devicons-config')
   lua require('specs-config')
+  lua require('nvim-compe-config')
+  lua require('nvim-lspconfig-config')
   lua require('gitlinker').setup()
   lua require('colorizer').setup()
   lua require('nvim-autopairs').setup()
   lua require('nvim_context_vt').setup()
+  " lua require('trouble').setup()
 endif
 
 filetype plugin indent on
@@ -99,7 +106,7 @@ colorscheme gruvbox
 " colorscheme tokyonight
 " colorscheme flattown
 
-set nowrap
+set wrap
 set nomodeline
 set relativenumber
 " set viewoptions=cursor,folds
@@ -118,7 +125,7 @@ set softtabstop=2
 set shiftround
 set completeopt+=longest
 set nowrap
-set wrapmargin=8
+" set wrapmargin=8
 " set linebreak
 set showbreak=↳
 set backupdir=~/.vim-tmp
@@ -156,13 +163,31 @@ set textwidth=0
 
 let mapleader = ' '
 
+" VSnip
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
 " Gitlinker
 noremap <leader>gY :lua require("gitlinker").get_repo_url()<cr>
 noremap <leader>gH :lua require("gitlinker").get_repo_url({action_callback = require("gitlinker.actions").open_in_browser})<cr>
 " nnoremap <leader>gy :lua require("gitlinker").get_buf_range_url("n", {action_callback = require("gitlinker.actions").open_in_browser})<cr>
 vnoremap <leader>gb :lua require("gitlinker").get_buf_range_url("v", {action_callback = require("gitlinker.actions").open_in_browser})<cr>
 
-" Run visual selection in shell
+" Compe
+set completeopt=menuone,noselect
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+" Run contents of visual selection in shell
 vnoremap <leader>R :w !bash<cr>
 
 nmap <leader>x :x<cr>
