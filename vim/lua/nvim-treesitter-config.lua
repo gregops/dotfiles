@@ -1,8 +1,11 @@
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
+  autopairs = { enable = true },
+  autotag = { enable = true },
+  indent = { enable = true },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
   playground = {
     enable = true,

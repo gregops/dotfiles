@@ -6,12 +6,9 @@ set rtp+=/${BREW_PATH}/opt/fzf
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " typescript support
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise' " add end keyword in ruby
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 " Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
@@ -23,15 +20,15 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-session'
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 Plug 'jamessan/vim-gnupg'
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
 " Plug 'Valloric/MatchTagAlways'
 Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'sickill/vim-pasta' " context-aware pasting
-Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
+" Plug 'pearofducks/ansible-vim' " Ansible's special-needs YAML highlight and indent handling
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 highlighting
-Plug 'Yggdroot/indentLine' " Indentation lines for code
+" Plug 'Yggdroot/indentLine' " Indentation lines for code
 Plug 'junegunn/vim-easy-align'
 Plug 'elzr/vim-json', { 'for': 'json' } " JSON support
 Plug 'chemzqm/vim-easygit'
@@ -42,7 +39,13 @@ Plug 'christoomey/vim-tmux-navigator' " Navigate TMUX panes and Vim splits
 Plug 'vimwiki/vimwiki'
 Plug 'b4b4r07/vim-hcl'
 Plug 'junegunn/gv.vim' " Git commit viewer
+Plug 'sheerun/vim-polyglot'
 " Plug 'aserebryakov/vim-todo-lists'
+
+" Both nvim-autopairs and lexima are broken
+" Plug 'windwp/nvim-autopairs'
+" Plug 'cohama/lexima.vim'
+Plug 'jiangmiao/auto-pairs'
 
 if has("nvim-0.5")
   Plug 'hrsh7th/nvim-compe'
@@ -50,6 +53,7 @@ if has("nvim-0.5")
   Plug 'hrsh7th/vim-vsnip-integ'
   Plug 'rafamadriz/friendly-snippets'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'glepnir/lspsaga.nvim'
   " Plug 'kosayoda/nvim-lightbulb'
   " Plug 'nvim-lua/lsp_extensions.nvim'
   " Plug 'nvim-lua/lsp-status.nvim'
@@ -68,11 +72,20 @@ if has("nvim-0.5")
   Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'romgrk/barbar.nvim'
-  Plug 'windwp/nvim-autopairs'
+  Plug 'windwp/nvim-ts-autotag'
   Plug 'edluffy/specs.nvim'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'haringsrob/nvim_context_vt'
-  Plug 'folke/trouble.nvim'
+  Plug 'folke/lsp-colors.nvim'
+  Plug 'npxbr/glow.nvim', {'do': ':GlowInstall', 'branch': 'main'}
+  Plug 'jghauser/mkdir.nvim'
+  Plug 'yamatsum/nvim-cursorline'
+  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'ray-x/go.nvim'
+  Plug 'phaazon/hop.nvim'
+  Plug 'ggandor/lightspeed.nvim'
+  Plug 'kevinhwang91/nvim-hlslens'
 endif
 call plug#end()
 
@@ -87,11 +100,15 @@ if has("nvim-0.5")
   lua require('specs-config')
   lua require('nvim-compe-config')
   lua require('nvim-lspconfig-config')
+  lua require('lspsaga-config')
+  " lua require('nvim-autopairs-config')
+  lua require('mkdir')
   lua require('gitlinker').setup()
   lua require('colorizer').setup()
-  lua require('nvim-autopairs').setup()
   lua require('nvim_context_vt').setup()
-  " lua require('trouble').setup()
+  lua require('nvim-ts-autotag').setup()
+  lua require('go').setup()
+  lua require('hop').setup()
 endif
 
 filetype plugin indent on
@@ -123,10 +140,10 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set shiftround
-set completeopt+=longest
+" set completeopt+=longest
 set nowrap
 " set wrapmargin=8
-" set linebreak
+set linebreak
 set showbreak=↳
 set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
@@ -145,7 +162,7 @@ set shell=$SHELL
 set scrolloff=6
 set ignorecase
 set smartcase
-set nohlsearch
+set hlsearch
 set incsearch
 set magic
 " set showmatch
@@ -161,7 +178,7 @@ set signcolumn=yes
 set colorcolumn=80
 set textwidth=0
 
-let mapleader = ' '
+let mapleader = ','
 
 " VSnip
 imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
@@ -174,21 +191,23 @@ imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
 " Gitlinker
-noremap <leader>gY :lua require("gitlinker").get_repo_url()<cr>
-noremap <leader>gH :lua require("gitlinker").get_repo_url({action_callback = require("gitlinker.actions").open_in_browser})<cr>
-" nnoremap <leader>gy :lua require("gitlinker").get_buf_range_url("n", {action_callback = require("gitlinker.actions").open_in_browser})<cr>
+noremap <leader>gy :lua require("gitlinker").get_repo_url()<cr>
+noremap <leader>gB :lua require("gitlinker").get_repo_url({action_callback = require("gitlinker.actions").open_in_browser})<cr>
+nnoremap <leader>gb :lua require("gitlinker").get_buf_range_url("n", {action_callback = require("gitlinker.actions").open_in_browser})<cr>
 vnoremap <leader>gb :lua require("gitlinker").get_buf_range_url("v", {action_callback = require("gitlinker.actions").open_in_browser})<cr>
 
-" Compe
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" Glow toggle
+noremap <leader>G :Glow<CR>
+
 set completeopt=menuone,noselect
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " Run contents of visual selection in shell
 vnoremap <leader>R :w !bash<cr>
+
+nnoremap <leader>W :HopWord<cr>
+nnoremap <leader>C :HopChar1<cr>
 
 nmap <leader>x :x<cr>
 nmap <leader>q :q<cr>
@@ -198,9 +217,9 @@ nmap <leader>w :w<cr>
 " Toggle paste mode
 set pastetoggle=<leader>v
 " Clear highlighted search
-noremap <leader>h :set hlsearch! hlsearch?<cr>
+noremap <leader>hl :set hlsearch! hlsearch?<cr>
 " Mac clipboard support
-vmap '' :w !pbcopy<CR><CR>
+vmap '' :w !pbcopy<CR>< R>
 " Enable . command in visual mode
 vnoremap . :normal .<cr>
 " Window moving/creating shortcuts
@@ -232,43 +251,23 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 " nnoremap <silent> ^ g^
 " nnoremap <silent> $ g$
 " nnoremap <silent> 0 g0
-augroup configgroup
-  autocmd!
-  " Automatically resize panes on resize
-  autocmd VimResized * exe 'normal! \<c-w>='
-  " Automatically reload vimrc - breaks theming!
-  " autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
-  " autocmd BufWritePost .vimrc.local source %
-  autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
-  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-augroup END
-" Run eslint linter for JS files every time they're saved
-" autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
-" Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
-" Expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
 
-" if isdirectory(".git")
-"   " if in a git project, use :GFiles
-"   nmap <silent> <leader>p :GFiles<cr>
-" else
-"   " otherwise, use :FZF
-"   nmap <silent> <leader>p :FZF<cr>
-" endif
-" nmap <silent> <leader>r :Buffers<cr>
+" augroup configgroup
+"   autocmd!
+"   " Automatically resize panes on resize
+"   autocmd VimResized * exe 'normal! \<c-w>='
+"   " Automatically reload vimrc - breaks theming!
+"   " autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
+"   " autocmd BufWritePost .vimrc.local source %
+"   autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
+"   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" augroup END
 
-nnoremap <silent> <leader>/ :Telescope current_buffer_fuzzy_find<cr>
-nnoremap <silent> <leader>r :Telescope buffers<cr>
-nnoremap <silent> <leader>b :Telescope file_browser<cr>
-nnoremap <silent> <leader>f :Telescope find_files<cr>
-nnoremap <silent> <leader>gg :Telescope git_files<cr>
-nnoremap <silent> <leader>sh :Telescope search_history<cr>
-nnoremap <silent> <leader>ch :Telescope command_history<cr>
-nnoremap <silent> <leader>lg :Telescope live_grep<cr>
+nnoremap <silent> <leader>k :NvimTreeToggle<CR>
+nnoremap <silent> <leader>K :NvimTreeFindFile<CR>
 
 " Fugitive Shortcuts
-nmap <silent> <leader>gs :Gstatus<cr>
+nmap <silent> <leader>gs :Git<cr>
 " nmap <leader>ge :Gedit<cr>
 " nmap <silent><leader>gr :Gread<cr>
 " nmap <silent><leader>gb :Gblame<cr>
@@ -283,7 +282,6 @@ nmap ga <Plug>(EasyAlign)
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let g:fzf_layout = { 'down': '~25%' }
-let NERDTreeShowHidden=1
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 let g:markdown_fenced_languages = ['ruby', 'python', 'css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -316,24 +314,10 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 autocmd FileType yaml setl ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=:
 
-" let g:gitgutter_realtime = 1
-" let g:gitgutter_override_sign_column_highlight = 0
-" let g:gitgutter_highlight_lines = 0
-" let g:ruby_operators=1
+let g:ruby_operators=1
 " let g:session_autosave=0
 " let b:surround_{char2nr('=')} = "<%= \r %>"
 " let b:surround_{char2nr('-')} = "<% \r %>"
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
 " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " let g:DevIconsEnableFoldersOpenClose = 1
 
@@ -354,63 +338,26 @@ nnoremap <silent> <M-7> :BufferGoto 7<CR>
 nnoremap <silent> <M-8> :BufferGoto 8<CR>
 nnoremap <silent> <M-9> :BufferGoto 9<CR>
 
-" let g:airline_powerline_fonts = 1
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
-" let g:airline_theme = 'papercolor'
-" let g:airline_inactive_collapse=0
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = ''
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.whitespace = 'Ξ'
-" let g:airline_symbols.space = ' '
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_splits = 1
-" let g:airline#extensions#tabline#show_close_button = 1
-" let g:airline#extensions#tabline#show_tab_type = 1
-" let g:airline#extensions#tabline#show_tab_nr = 1
-" let g:airline#extensions#tabline#tab_nr_type = 1
-" let g:airline#extensions#tabline#buffer_idx_mode = 1
-" let g:airline#extensions#tabline#tabs_label = 'tabs'
-" nmap <leader>1 <Plug>AirlineSelectTab1
-" nmap <leader>2 <Plug>AirlineSelectTab2
-" nmap <leader>3 <Plug>AirlineSelectTab3
-" nmap <leader>4 <Plug>AirlineSelectTab4
-" nmap <leader>5 <Plug>AirlineSelectTab5
-" nmap <leader>6 <Plug>AirlineSelectTab6
-" nmap <leader>7 <Plug>AirlineSelectTab7
-" nmap <leader>8 <Plug>AirlineSelectTab8
-" nmap <leader>9 <Plug>AirlineSelectTab9
-" nmap <leader>- <Plug>AirlineSelectPrevTab
-" nmap <leader>+ <Plug>AirlineSelectNextTab
-" let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline_section_c = '%<%<%m %F %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
-
 let g:vim_json_syntax_conceal = 0
-let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
-let g:ansible_attribute_highlight = "ab"
-let g:ansible_name_highlight = 'b'
-let g:ansible_extra_keywords_highlight = 1
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.js,*.erb'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_close_shortcut = '<leader>>'
-let g:indentLine_color_gui = '#444444'
+
+" lukas-reineke/indent-blankline.nvim (uses similar options to Yggdroot/indentLine)
+let g:indentLine_color_gui = '#ffffff'
 let g:indentLine_color_term = 239
-let g:indentLine_char = '⎸'
-let g:python3_host_prog = $HOME . '/bin/python'
-let g:python2_host_prog = $HOME . '/bin/python2'
+" let g:indent_blankline_char = '⎸'
+" let g:indent_blankline_char = '▏'
+let g:indent_blankline_char = '│'
+let g:indent_blankline_indent_level = 20
+" let g:indent_blankline_show_end_of_line = v:true
+let g:indent_blankline_use_treesitter = v:true
+let g:indent_blankline_show_current_context = v:true
+highlight IndentBlanklineContextChar guifg=#888888 gui=nocombine
+let g:indent_blankline_context_patterns = ['class', 'function', 'method', 'for', 'while', 'if']
+
+" let g:python3_host_prog = $HOME . '/bin/python'
+" let g:python2_host_prog = $HOME . '/bin/python2'
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.md'}]
 
 au BufRead,BufNewFile *.yaml set filetype=yaml
-au BufRead,BufNewFile *.tpl set filetype=mustache
-au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
 
 " Keybase saltpack auto-encryption/decryption
@@ -423,11 +370,6 @@ augroup SALTPACK
   au BufWritePost,FileReadPost *.saltpack silent u
 augroup END
 
-" let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-" let g:ale_sign_warning = '.'
-" let g:ale_sign_column_always = 1
-" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
 " From https://z0mbix.io/2018/03/28/quickly-access-terraform-docs-from-the-cli-or-vim/
 if executable('tfdoc')
   command! -nargs=* Tfdoc :call system('tfdoc' . ' ' . <q-args>)
@@ -436,7 +378,3 @@ nnoremap <silent> <Leader>tr :Tfdoc <C-R><C-W><CR>
 nnoremap <silent> <Leader>td :Tfdoc -d <C-R><C-W><CR>
 xnoremap <silent> <Leader>tr y:Tfdoc <C-R>"<CR>
 xnoremap <silent> <Leader>td y:Tfdoc -d <C-R>"<CR>
-
-if has("gui_running")
-  set noballooneval
-endif
