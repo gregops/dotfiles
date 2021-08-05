@@ -190,7 +190,7 @@ smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
-# Telescope
+" Telescope
 nnoremap <silent> <leader>/ :Telescope current_buffer_fuzzy_find<cr>
 nnoremap <silent> <leader>r :Telescope buffers<cr>
 nnoremap <silent> <leader>b :Telescope file_browser<cr>
