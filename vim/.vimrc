@@ -190,6 +190,16 @@ smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
+# Telescope
+nnoremap <silent> <leader>/ :Telescope current_buffer_fuzzy_find<cr>
+nnoremap <silent> <leader>r :Telescope buffers<cr>
+nnoremap <silent> <leader>b :Telescope file_browser<cr>
+nnoremap <silent> <leader>f :Telescope find_files<cr>
+nnoremap <silent> <leader>gg :Telescope git_files<cr>
+nnoremap <silent> <leader>sh :Telescope search_history<cr>
+nnoremap <silent> <leader>ch :Telescope command_history<cr>
+nnoremap <silent> <leader>lg :Telescope live_grep<cr>
+
 " Gitlinker
 noremap <leader>gy :lua require("gitlinker").get_repo_url()<cr>
 noremap <leader>gB :lua require("gitlinker").get_repo_url({action_callback = require("gitlinker.actions").open_in_browser})<cr>

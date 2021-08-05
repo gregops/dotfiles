@@ -73,11 +73,11 @@ font:
 
     # family: BigBlue_TerminalPlus Nerd Font
     # family: BigBlue_Terminal_437TT Nerd Font
-    # family: BitstreamVeraSansMono Nerd Font
+    family: BitstreamVeraSansMono Nerd Font
     # family: BlexMono Nerd Font
     # family: CaskaydiaCove Nerd Font
     # family: CodeNewRoman Nerd Font
-    family: Cousine Nerd Font
+    # family: Cousine Nerd Font
     # family: DejaVuSansMono Nerd Font
     # family: FantasqueSansMono Nerd Font
     # family: FiraCode Nerd Font
