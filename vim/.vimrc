@@ -126,7 +126,6 @@ colorscheme gruvbox
 " colorscheme tokyonight
 " colorscheme flattown
 
-set wrap
 set nomodeline
 set relativenumber
 " set viewoptions=cursor,folds
@@ -144,7 +143,7 @@ set tabstop=2
 set softtabstop=2
 set shiftround
 " set completeopt+=longest
-set nowrap
+set wrap
 " set wrapmargin=8
 set linebreak
 set showbreak=↳
@@ -357,8 +356,8 @@ let g:vim_json_syntax_conceal = 0
 let g:indentLine_color_gui = '#ffffff'
 let g:indentLine_color_term = 239
 " let g:indent_blankline_char = '⎸'
-" let g:indent_blankline_char = '▏'
-let g:indent_blankline_char = '│'
+let g:indent_blankline_char = '▏'
+" let g:indent_blankline_char = '│'
 let g:indent_blankline_indent_level = 20
 " let g:indent_blankline_show_end_of_line = v:true
 let g:indent_blankline_use_treesitter = v:true
