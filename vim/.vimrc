@@ -114,6 +114,9 @@ endif
 filetype plugin indent on
 syntax on
 
+let g:cursorword_highlight = v:true
+let g:cursorline_timeout = -1
+
 let g:gruvbox_transparent_bg = 1
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_signs = 1
