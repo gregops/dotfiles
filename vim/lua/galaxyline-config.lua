@@ -93,19 +93,19 @@ local function diagnostic_exists()
   return not vim.tbl_isempty(vim.lsp.buf_get_clients(0))
 end
 
-local function diag(severity)
-  local n = vim.lsp.diagnostic.get_count(0, severity)
-  if n == 0 then
-    return ""
-  end
-  local diag_mapping = {
-    ["Warning"] = icons.warning,
-    ["Error"] = icons.error,
-    ["Information"] = icons.info,
-    ["Hint"] = icons.hint
-  }
-  return string.format(" %s %d ", diag_mapping[severity], n)
-end
+-- local function diag(severity)
+--   local n = vim.diagnostic.get(0, { severity = severity })
+--   if n == 0 then
+--     return ""
+--   end
+--   local diag_mapping = {
+--     ["Warning"] = icons.warning,
+--     ["Error"] = icons.error,
+--     ["Information"] = icons.info,
+--     ["Hint"] = icons.hint
+--   }
+--   return string.format(" %s %d ", diag_mapping[severity], n)
+-- end
 
 local function wide_enough(width)
   if vim.fn.winwidth(0) > width then
@@ -133,6 +133,7 @@ gls.left[1] = {
     separator_highlight = "GalaxyViModeInv"
   }
 }
+
 gls.left[2] = {
   FileIcon = {
     provider = function()
@@ -141,16 +142,15 @@ gls.left[2] = {
       if icon == nil then
         return ""
       end
-
       local fg = vim.fn.synIDattr(vim.fn.hlID(iconhl), "fg")
       local _, _, bg = unpack(mode_hl())
       highlight("GalaxyFileIcon", fg, bg)
-
       return " " .. icon .. " "
     end,
     condition = buffer_not_empty
   }
 }
+
 gls.left[3] = {
   FileName = {
     provider = function()
@@ -160,7 +160,6 @@ gls.left[3] = {
       if not buffer_not_empty() then
         return ""
       end
-
       local fname
       if wide_enough(120) then
         fname = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
@@ -173,7 +172,6 @@ gls.left[3] = {
       if #fname == 0 then
         return ""
       end
-
       if vim.bo.readonly then
         fname = fname .. " " .. icons.locker
       end
@@ -183,13 +181,13 @@ gls.left[3] = {
       if vim.bo.modified then
         fname = fname .. " " .. icons.pencil
       end
-
       return " " .. fname .. " "
     end,
     highlight = "GalaxyViModeNested",
     condition = buffer_not_empty
   }
 }
+
 gls.left[4] = {
   LeftSep = {
     provider = function()
@@ -198,38 +196,36 @@ gls.left[4] = {
     highlight = "GalaxyViModeInvNested"
   }
 }
+
 gls.left[5] = {
   GitIcon = {
     provider = function()
       highlight("DiffAdd", colors.bright_green, colors.bg1)
       highlight("DiffChange", colors.bright_orange, colors.bg1)
       highlight("DiffDelete", colors.bright_red, colors.bg1)
-
       local branch = vcs.get_git_branch()
-
       if wide_enough(85) and branch ~= nil then
         return "  " .. icons.git .. " "
       end
-
       return ""
     end,
     highlight = {colors.bright_red, colors.bg1}
   }
 }
+
 gls.left[6] = {
   GitBranch = {
     provider = function()
       local branch = vcs.get_git_branch()
-
       if wide_enough(85) and branch ~= nil then
         return branch .. " "
       end
-
       return ""
     end,
     highlight = {colors.fg2, colors.bg1}
   }
 }
+
 gls.left[7] = {
   DiffAdd = {
     provider = function()
@@ -242,6 +238,7 @@ gls.left[7] = {
     highlight = {colors.bright_green, colors.bg1}
   }
 }
+
 gls.left[8] = {
   DiffModified = {
     provider = function()
@@ -254,6 +251,7 @@ gls.left[8] = {
     highlight = {colors.bright_orange, colors.bg1}
   }
 }
+
 gls.left[9] = {
   DiffRemove = {
     provider = function()
@@ -277,6 +275,7 @@ gls.right[1] = {
     highlight = {colors.bright_purple, colors.bg1}
   }
 }
+
 gls.right[2] = {
   LspServer = {
     provider = function()
@@ -292,56 +291,62 @@ gls.right[2] = {
     highlight = {colors.fg4, colors.bg1}
   }
 }
-gls.right[3] = {
-  DiagnosticOk = {
-    provider = function()
-      if not diagnostic_exists() then
-        return ""
-      end
-      local w = vim.lsp.diagnostic.get_count(0, "Warning")
-      local e = vim.lsp.diagnostic.get_count(0, "Error")
-      local i = vim.lsp.diagnostic.get_count(0, "Information")
-      local h = vim.lsp.diagnostic.get_count(0, "Hint")
-      if w ~= 0 or e ~= 0 or i ~= 0 or h ~= 0 then
-        return ""
-      end
-      return icons.ok .. " "
-    end,
-    highlight = {colors.bright_green, colors.bg1}
-  }
-}
-gls.right[4] = {
-  DiagnosticError = {
-    provider = function()
-      return diag("Error")
-    end,
-    highlight = {colors.bright_red, colors.bg1}
-  }
-}
-gls.right[5] = {
-  DiagnosticWarn = {
-    provider = function()
-      return diag("Warning")
-    end,
-    highlight = {colors.bright_yellow, colors.bg1}
-  }
-}
-gls.right[6] = {
-  DiagnosticInfo = {
-    provider = function()
-      return diag("Information")
-    end,
-    highlight = {colors.bright_blue, colors.bg1}
-  }
-}
-gls.right[7] = {
-  DiagnosticHint = {
-    provider = function()
-      return diag("Hint")
-    end,
-    highlight = {colors.bright_aqua, colors.bg1}
-  }
-}
+
+-- gls.right[3] = {
+--   DiagnosticOk = {
+--     provider = function()
+--       if not diagnostic_exists() then
+--         return ""
+--       end
+--       local w = vim.lsp.diagnostic.get_count(0, "Warning")
+--       local e = vim.lsp.diagnostic.get_count(0, "Error")
+--       local i = vim.lsp.diagnostic.get_count(0, "Information")
+--       local h = vim.lsp.diagnostic.get_count(0, "Hint")
+--       if w ~= 0 or e ~= 0 or i ~= 0 or h ~= 0 then
+--         return ""
+--       end
+--       return icons.ok .. " "
+--     end,
+--     highlight = {colors.bright_green, colors.bg1}
+--   }
+-- }
+
+-- gls.right[4] = {
+--   DiagnosticError = {
+--     provider = function()
+--       return diag("Error")
+--     end,
+--     highlight = {colors.bright_red, colors.bg1}
+--   }
+-- }
+
+-- gls.right[5] = {
+--   DiagnosticWarn = {
+--     provider = function()
+--       return diag("Warning")
+--     end,
+--     highlight = {colors.bright_yellow, colors.bg1}
+--   }
+-- }
+
+-- gls.right[6] = {
+--   DiagnosticInfo = {
+--     provider = function()
+--       return diag("Information")
+--     end,
+--     highlight = {colors.bright_blue, colors.bg1}
+--   }
+-- }
+
+-- gls.right[7] = {
+--   DiagnosticHint = {
+--     provider = function()
+--       return diag("Hint")
+--     end,
+--     highlight = {colors.bright_aqua, colors.bg1}
+--   }
+-- }
+
 gls.right[8] = {
   RightSepNested = {
     provider = function()
@@ -350,6 +355,7 @@ gls.right[8] = {
     highlight = "GalaxyViModeInvNested"
   }
 }
+
 gls.right[9] = {
   FileFormat = {
     provider = function()
@@ -362,6 +368,7 @@ gls.right[9] = {
     highlight = "GalaxyViModeNested"
   }
 }
+
 gls.right[10] = {
   RightSep = {
     provider = function()
@@ -370,6 +377,7 @@ gls.right[10] = {
     highlight = "GalaxyViModeInv"
   }
 }
+
 gls.right[11] = {
   PositionInfo = {
     provider = function()
@@ -381,6 +389,7 @@ gls.right[11] = {
     highlight = "GalaxyViMode"
   }
 }
+
 gls.right[12] = {
   PercentInfo = {
     provider = function()
@@ -431,6 +440,7 @@ gls.short_line_left[1] = {
     separator_highlight = "GalaxyViModeInv"
   }
 }
+
 gls.short_line_left[2] = {
   ShortLeftSepNested = {
     provider = function()
@@ -439,6 +449,7 @@ gls.short_line_left[2] = {
     highlight = "GalaxyViModeInvNested"
   }
 }
+
 gls.short_line_right[1] = {
   ShortRightSepNested = {
     provider = function()
@@ -447,6 +458,7 @@ gls.short_line_right[1] = {
     highlight = "GalaxyViModeInvNested"
   }
 }
+
 gls.short_line_right[2] = {
   ShortRightSep = {
     provider = function()

@@ -28,16 +28,20 @@ require('gitsigns').setup {
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
     ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
   },
-  watch_index = {
+  watch_gitdir = {
     interval = 1000,
     follow_files = true
   },
   current_line_blame = true,
-  current_line_blame_delay = 100,
-  current_line_blame_position = 'eol',
+  current_line_blame_opts = {
+    delay = 100,
+    virt_text_pos = 'eol'
+  },
+  diff_opts = {
+    internal = true
+  },
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
   word_diff = false,
-  use_internal_diff = true,  -- If luajit is present
 }

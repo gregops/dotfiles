@@ -37,7 +37,8 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'christoomey/vim-tmux-navigator' " Navigate TMUX panes and Vim splits
 " Plug 'benmills/vimux' " Run commands in a new TMUX pane from Vim
 Plug 'vimwiki/vimwiki'
-Plug 'b4b4r07/vim-hcl'
+" Plug 'b4b4r07/vim-hcl'
+Plug 'jvirtanen/vim-hcl'
 Plug 'junegunn/gv.vim' " Git commit viewer
 Plug 'sheerun/vim-polyglot'
 " Plug 'aserebryakov/vim-todo-lists'
@@ -53,7 +54,7 @@ if has("nvim-0.5")
   Plug 'hrsh7th/vim-vsnip-integ'
   Plug 'rafamadriz/friendly-snippets'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'glepnir/lspsaga.nvim'
+  " Plug 'glepnir/lspsaga.nvim'
   " Plug 'kosayoda/nvim-lightbulb'
   " Plug 'nvim-lua/lsp_extensions.nvim'
   " Plug 'nvim-lua/lsp-status.nvim'
@@ -100,7 +101,7 @@ if has("nvim-0.5")
   lua require('specs-config')
   lua require('nvim-compe-config')
   lua require('nvim-lspconfig-config')
-  lua require('lspsaga-config')
+  " lua require('lspsaga-config')
   " lua require('nvim-autopairs-config')
   lua require('mkdir')
   lua require('gitlinker').setup()
