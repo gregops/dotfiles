@@ -78,7 +78,7 @@ if has("nvim-0.5")
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'haringsrob/nvim_context_vt'
   Plug 'folke/lsp-colors.nvim'
-  Plug 'npxbr/glow.nvim', {'do': ':GlowInstall', 'branch': 'main'}
+  Plug 'ellisonleao/glow.nvim'
   Plug 'jghauser/mkdir.nvim'
   Plug 'yamatsum/nvim-cursorline'
   Plug 'lukas-reineke/indent-blankline.nvim'
