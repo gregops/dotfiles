@@ -2,8 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-sysctl -b machdep.cpu.brand_string | grep ^Apple >/dev/null
-if [ $? -eq 0 ]; then
+if [ "$(uname -m)" = "arm64" ]; then
   alias brew="arch -arm64 brew"
 fi
 export BREW_PATH=$(brew --prefix)
@@ -100,7 +99,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(autojump docker)
 
 # test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-test -f /${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+test -f ${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # test -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
