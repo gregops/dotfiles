@@ -104,7 +104,7 @@ test -f ${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source
 
 # User configuration
 export GOPATH=${HOME}/.go
-export PATH="${HOME}/bin:${BREW_PATH}/opt/coreutils/libexec/gnubin:${BREW_PATH}/opt/ruby/bin:${PATH}:${HOME}/.krew/bin:${BREW_PATH}/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:$GOPATH/bin:${BREW_PATH}/opt/mysql-client/bin"
+export PATH="${HOME}/bin:${BREW_PATH}/opt/coreutils/libexec/gnubin:${BREW_PATH}/opt/ruby/bin:${PATH}:${HOME}/.krew/bin:${BREW_PATH}/sbin:${HOME}/.cargo/bin:${HOME}/.local/bin:$GOPATH/bin:${BREW_PATH}/opt/mysql-client/bin:${BREW_PATH}/opt/curl/bin"
 export MANPATH="${BREW_PATH}/share/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -172,6 +172,8 @@ alias dps="docker ps"
 alias c=clear
 alias dockerprune="docker image prune --force && docker system prune -a -f --volumes"
 
+alias ns="kubectl config set-context --current --namespace"
+
 export NVM_DIR="$HOME/.nvm"
 test -s "$NVM_DIR/nvm.sh" && . "$NVM_DIR/nvm.sh"
 
@@ -224,6 +226,7 @@ test -f /${BREW_PATH}/opt/nvm/nvm.sh && . /${BREW_PATH}/opt/nvm/nvm.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
+test -f ~/.zshrc.local.work -a "${WORK}" -eq "1" && . ~/.zshrc.local.work
 
 g() {
   grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform --exclude *.svg --exclude *.plist --exclude package-lock.json --exclude yarn.lock --exclude .gitignore "$@" . | fzf -0 --bind "enter:execute(nvim {})" --preview 'bat --style=numbers --color=always --line-range :500 {}'
@@ -260,5 +263,3 @@ urldecode() {
   local url_encoded="${1//+/ }"
   printf '%b' "${url_encoded//%/\\x}"
 }
-
-function gam() { "/Users/greg/bin/gam/gam" "$@" ; }

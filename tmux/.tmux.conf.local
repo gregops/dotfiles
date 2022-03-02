@@ -227,7 +227,7 @@ tmux_conf_theme_right_separator_sub="|"
 #     - #{username}
 #     - #{username_ssh}
 # tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
-tmux_conf_theme_status_left=""
+tmux_conf_theme_status_left="#{circled_session_name}"
 tmux_conf_theme_status_right=" #{prefix} %R , %d %b | #{cpu_bg_color} #{cpu_fg_color} #{cpu_percentage} | #{username}#{root} | #{hostname} "
 
 set -g @cpu_low_fg_color "#[fg=#ffffff]"
