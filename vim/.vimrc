@@ -62,6 +62,7 @@ if has("nvim-0.5")
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-file-browser.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'nvim-treesitter/playground'
@@ -110,6 +111,8 @@ if has("nvim-0.5")
   lua require('nvim-ts-autotag').setup()
   lua require('go').setup()
   lua require('hop').setup()
+  lua require('nvim-telescope')
+  lua require('nvim-hlslens')
 endif
 
 filetype plugin indent on
@@ -199,9 +202,17 @@ nnoremap <silent> <leader>r :Telescope buffers<cr>
 nnoremap <silent> <leader>b :Telescope file_browser<cr>
 nnoremap <silent> <leader>f :Telescope find_files<cr>
 nnoremap <silent> <leader>gg :Telescope git_files<cr>
+nnoremap <silent> <leader>gs :Telescope git_status<cr>
+nnoremap <silent> <leader>gc :Telescope git_commits<cr>
 nnoremap <silent> <leader>sh :Telescope search_history<cr>
 nnoremap <silent> <leader>ch :Telescope command_history<cr>
 nnoremap <silent> <leader>lg :Telescope live_grep<cr>
+
+
+hi default link HlSearchNear IncSearch
+hi default link HlSearchLens WildMenu
+hi default link HlSearchLensNear IncSearch
+hi default link HlSearchFloat IncSearch
 
 " Gitlinker
 noremap <leader>gy :lua require("gitlinker").get_repo_url()<cr>
@@ -280,7 +291,7 @@ nnoremap <silent> <leader>k :NvimTreeToggle<CR>
 nnoremap <silent> <leader>K :NvimTreeFindFile<CR>
 
 " Fugitive Shortcuts
-nmap <silent> <leader>gs :Git<cr>
+" nmap <silent> <leader>gs :Git<cr>
 " nmap <leader>ge :Gedit<cr>
 " nmap <silent><leader>gr :Gread<cr>
 " nmap <silent><leader>gb :Gblame<cr>
