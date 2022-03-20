@@ -188,6 +188,9 @@ alias dockerprune="docker image prune --force && docker system prune -a -f --vol
 
 alias ns="kubectl config set-context --current --namespace"
 
+export TERRAGRUNT_DOWNLOAD=${HOME}/.terragrunt-cache
+export TF_PLUGIN_CACHE_DIR=${HOME}/.terraform.d/plugin-cache
+
 export NVM_DIR="$HOME/.nvm"
 test -s "$NVM_DIR/nvm.sh" && . "$NVM_DIR/nvm.sh"
 
