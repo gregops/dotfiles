@@ -31,6 +31,11 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time kubecontext)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status)
 # POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
 # POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
+POWERLEVEL9K_VCS_SHORTEN_LENGTH=10
+POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=11
+POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_unique"
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=5
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="197"
 POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="255"
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="245"
@@ -159,6 +164,7 @@ alias gs="git status"
 alias ga="git add"
 alias gco="git checkout"
 alias gt="git tag"
+alias gb="git rev-parse --abbrev-ref HEAD"
 
 # Vagrant aliases
 alias vp="vagrant provision"
