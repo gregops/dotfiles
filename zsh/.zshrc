@@ -165,6 +165,7 @@ alias ga="git add"
 alias gco="git checkout"
 alias gt="git tag"
 alias gb="git rev-parse --abbrev-ref HEAD"
+alias gr="git remote -v"
 
 # Vagrant aliases
 alias vp="vagrant provision"
