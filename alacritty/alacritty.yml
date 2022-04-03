@@ -375,8 +375,8 @@ key_bindings:
   - { key: Home,                          chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                           chars: "\x1bOF",   mode: AppCursor   }
   - { key: End,                           chars: "\x1b[F",   mode: ~AppCursor  }
-  - { key: H,        mods: Alt,           command: { program: "/usr/local/bin/tmux", args: ["previous-window"] } }
-  - { key: L,        mods: Alt,           command: { program: "/usr/local/bin/tmux", args: ["next-window"] } }
+  - { key: H,        mods: Alt,           command: { program: "/opt/homebrew/bin/tmux", args: ["previous-window"] } }
+  - { key: L,        mods: Alt,           command: { program: "/opt/homebrew/bin/tmux", args: ["next-window"] } }
   - { key: Key1,     mods: Command,       chars: "\x021"                       }
   - { key: Key2,     mods: Command,       chars: "\x022"                       }
   - { key: Key3,     mods: Command,       chars: "\x023"                       }

@@ -2,9 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [ "$(uname -m)" = "arm64" ]; then
-  alias brew="arch -arm64 brew"
-fi
+export PATH=${PATH}:/opt/homebrew/bin
 export BREW_PATH=$(brew --prefix)
 
 # Path to your oh-my-zsh installation.
@@ -157,6 +155,7 @@ function tre() {
 # Git aliases
 alias gpl="git pull"
 alias gps="git push"
+alias gpo="git push --set-upstream origin \$(git rev-parse --abbrev-ref HEAD)"
 alias gc="git commit -am"
 alias gco="git checkout"
 alias gd="git diff"
