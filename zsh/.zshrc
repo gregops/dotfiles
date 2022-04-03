@@ -285,3 +285,41 @@ urldecode() {
   local url_encoded="${1//+/ }"
   printf '%b' "${url_encoded//%/\\x}"
 }
+
+# Chronologically latest image tag for an ECR image
+lit() {
+  aws ecr describe-images --repository-name $1 --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' | tr -d "\""
+}
+
+# All image tags for an ECR image, sorted chronologically in descending order
+it() {
+  aws ecr describe-images --repository-name $1 --query 'reverse(sort_by(imageDetails,& imagePushedAt))[*].[imagePushedAt,imageTags]' | jq -r '.[] | reduce .[1:][] as $i ("\(.[0])"; . + ", \($i)" )'
+}
+
+curlperf() {
+  curl -o /dev/null -s -w "%{time_connect} + %{time_starttransfer} = %{time_total}\n" "$1"
+}
+
+alias eksutil='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -P 200 -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
+alias ekspodrequests='kubectl get pods -o custom-columns=NAME:.metadata.name,"CPU(cores)":.spec.containers[*].resources.requests.cpu,"MEMORY(bytes)":.spec.containers[*].resources.requests.memory --all-namespaces'
+alias kstats='join -a1 -a2 -o 0,1.2,1.3,2.2,2.3,2.4,2.5, -e '"'"'<none>'"'"' <(kubectl top pods) <(kubectl get pods -o custom-columns=NAME:.metadata.name,"CPU_REQ(cores)":.spec.containers[*].resources.requests.cpu,"MEMORY_REQ(bytes)":.spec.containers[*].resources.requests.memory,"CPU_LIM(cores)":.spec.containers[*].resources.limits.cpu,"MEMORY_LIM(bytes)":.spec.containers[*].resources.limits.memory) | column -t -s'"'"' '"'"
+
+kstats2() {
+    ns="$1"
+    printf "$ns\n"
+    separator=$(printf '=%.0s' {1..50})
+    printf "$separator\n"
+    output=$(join -a1 -a2 -o 0,1.2,1.3,2.2,2.3,2.4,2.5, -e '<none>' \
+        <(kubectl top pods -n $ns) \
+        <(kubectl get -n $ns pods -o custom-columns=NAME:.metadata.name,"CPU_REQ(cores)":.spec.containers[*].resources.requests.cpu,"MEMORY_REQ(bytes)":.spec.containers[*].resources.requests.memory,"CPU_LIM(cores)":.spec.containers[*].resources.limits.cpu,"MEMORY_LIM(bytes)":.spec.containers[*].resources.limits.memory))
+    totals=$(printf "%s" "$output" | awk '{s+=$2; t+=$3; u+=$4; v+=$5; w+=$6; x+=$7} END {print s" "t" "u" "v" "w" "x}')
+    printf "%s\n%s\nTotals: %s\n" "$output" "$separator" "$totals" | column -t -s' '
+    printf "$separator\n"
+}
+
+kgetall() {
+  for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
+    echo "Resource:" $i
+    kubectl -n ${1} get --ignore-not-found ${i} -o yaml
+  done
+}
