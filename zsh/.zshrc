@@ -314,3 +314,17 @@ kgetall() {
     kubectl -n ${1} get --ignore-not-found ${i} -o yaml
   done
 }
+
+# Use: ssm <aws-profile-name>/<ec2-instance-name-tag-value> (first one found
+# will be picked if multiple instances match)
+function ssm() {
+  profile=${1%%/*}
+  name=${1##*/}
+  instance_id=$(aws --profile ${profile} ec2 describe-instances \
+    --filter "Name=tag:Name,Values=${name}" \
+    --query "Reservations[].Instances[?State.Name == 'running'].InstanceId[]|[0]" \
+    --output text)
+  test "${instance_id}" == "None" \
+    && (echo "Could not find any instance matching '${name}' in '${profile}' account"; return;) \
+    || aws --profile ${profile} ssm start-session --target ${instance_id}
+}
