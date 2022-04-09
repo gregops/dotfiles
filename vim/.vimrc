@@ -42,11 +42,12 @@ Plug 'jvirtanen/vim-hcl'
 Plug 'junegunn/gv.vim' " Git commit viewer
 Plug 'sheerun/vim-polyglot'
 " Plug 'aserebryakov/vim-todo-lists'
-
 " Both nvim-autopairs and lexima are broken
 " Plug 'windwp/nvim-autopairs'
 " Plug 'cohama/lexima.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'ckipp01/nvim-jenkinsfile-linter'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 if has("nvim-0.5")
   Plug 'hrsh7th/nvim-compe'
@@ -107,7 +108,7 @@ if has("nvim-0.5")
   lua require('mkdir')
   lua require('gitlinker-config')
   lua require('colorizer').setup()
-  lua require('nvim_context_vt').setup()
+  lua require('nvim-context-vt')
   lua require('nvim-ts-autotag').setup()
   lua require('go').setup()
   lua require('hop').setup()
@@ -213,6 +214,9 @@ hi default link HlSearchNear IncSearch
 hi default link HlSearchLens WildMenu
 hi default link HlSearchLensNear IncSearch
 hi default link HlSearchFloat IncSearch
+
+" Jenkins Lint
+noremap <leader>j :lua require("jenkinsfile_linter").validate()<cr>
 
 " Gitlinker
 noremap <leader>gy :lua require("gitlinker").get_repo_url()<cr>
@@ -336,7 +340,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " highlight VertSplit cterm=NONE ctermfg=Green ctermbg=White guibg=#B0B0B0 guifg=#B0B0B0
 
 autocmd FileType yaml setl ts=2 sts=2 sw=2 expandtab
-autocmd FileType yaml setl indentkeys-=:
+autocmd FileType yaml setl indentkeys-=<:> indentkeys-=0#
 
 let g:ruby_operators=1
 " let g:session_autosave=0
