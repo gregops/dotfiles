@@ -2,9 +2,9 @@
 
 This script fetches specific user's Bitbucket pull request comments, in the
 order they were added, and outputs the combined text on stdout. Only contents
-of code blocks comments is fetched.
+of code blocks comments are fetched.
 
-This aides legibility in cases where long comments created by automation (e.g.
+This helps legibility in cases where long comments created by automation (e.g.
 Atlantis) are automatically split up by Bitbucket and sorted in the web UI in
 descending order.
 
