@@ -20,7 +20,6 @@ export SHELL=${BREW_PATH}/bin/zsh
 # alias open=xdg-open
 
 # Set the theme
-# ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME=powerlevel10k/powerlevel10k
 POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline prompt_char)
@@ -101,9 +100,7 @@ COMPLETION_WAITING_DOTS="true"
 # plugins=(autojump brew gem osx rails ruby web-search docker zsh-autosuggestions)
 plugins=(autojump docker)
 
-# test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 test -f ${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /${BREW_PATH}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# test -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 export GOPATH=${HOME}/.go
@@ -114,9 +111,6 @@ source $ZSH/oh-my-zsh.sh
 mkdir -p ${ZDOTDIR:-~}/.zsh_functions
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 export HIST_STAMPS="yyyy-mm-dd"
 export HISTSIZE=999999999
 export SAVEHIST=999999999
@@ -182,6 +176,7 @@ alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias k=kubectl
 alias kns=kubens
+alias ns="kubectl config set-context --current --namespace"
 alias kctx=kubectx
 alias tf=terraform
 alias tg=terragrunt
@@ -191,8 +186,6 @@ alias di="docker images"
 alias dps="docker ps"
 alias c=clear
 alias dockerprune="docker image prune --force && docker system prune -a -f --volumes"
-
-alias ns="kubectl config set-context --current --namespace"
 
 export TERRAGRUNT_DOWNLOAD=${HOME}/.terragrunt-cache
 export TF_PLUGIN_CACHE_DIR=${HOME}/.terraform.d/plugin-cache
@@ -243,8 +236,6 @@ set -o vi
 autoload -z edit-command-line
 bindkey -M vicmd v edit-command-line
 bindkey '^i' expand-or-complete-prefix
-export NVM_DIR="$HOME/.nvm"
-test -f /${BREW_PATH}/opt/nvm/nvm.sh && . /${BREW_PATH}/opt/nvm/nvm.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export GPG_TTY=$(tty)
 test -f ~/.zshrc.local && . ~/.zshrc.local
