@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+if [ ! -x "$(command -v jq)" ]; then
+  echo "'jq' is a pre-requisite." >&2
+  exit 1
+fi
+
+if [ -z "${PRC_BB_REPO_URI}" ]; then
+  echo -e "\nSet the PRC_BB_REPO_URI environment variable to the HTTPS or SSH"
+  echo -e "remote of a Bitbucket repo.\n"
+  echo -e "Examples:\n"
+  echo -e "  PRC_BB_REPO_URI=\"https://<host>/bitbucket/scm/<project>/<repo>.git\""
+  echo -e "  PRC_BB_REPO_URI=\"ssh://git@<host>:7999/<project>/<repo>.git\""
+  exit 1
+fi
+
+PRC_BB_FILTER_USER=${PRC_BB_FILTER_USER:-atlantis}
+PRC_BB_TOKEN_FILE=${PRC_BB_TOKEN_FILE:-${HOME}/.prc-bb-token}
+
+if [ -n "${PRC_BB_TOKEN_OP_VAULT}" -a -n "${PRC_BB_TOKEN_OP_ITEM}" ]; then
+  PRC_BB_TOKEN="$(op item get \
+    --vault ${PRC_BB_TOKEN_OP_VAULT} \
+    --fields ${PRC_BB_TOKEN_OP_FIELD:-"password"} \
+    "${PRC_BB_TOKEN_OP_ITEM}"
+  )"
+elif [ -s ${PRC_BB_TOKEN_FILE} ]; then
+  if [ "$(stat -Lc %a ${PRC_BB_TOKEN_FILE})" != "^400$"]; then
+    echo "Your Bitbucket token file permissions must be 0400 (e.g. run \"chmod 0400 ${PRC_BB_TOKEN_FILE}\")" >&2
+    exit 1
+  fi
+  PRC_BB_TOKEN="$(cat ${PRC_BB_TOKEN_FILE})"
+else
+  if [ -z "${PRC_BB_TOKEN}" ]; then
+    echo -e "\nYou must create a Bitbucket access token and store it in:\n" >&2
+    echo -e "  - ${PRC_BB_TOKEN_FILE} file with 0400 permissions" >&2
+    echo -e "    (use PRC_BB_TOKEN_FILE env var to specify another file)\n" >&2
+    echo -e "  or\n" >&2
+    echo -e "  - PRC_BB_TOKEN environment variable (set and store it securely!)\n" >&2
+    echo -e "  or\n" >&2
+    echo -e "  - 1Password and set PRC_BB_TOKEN_OP_VAULT=<1p-vault-name> and PRC_BB_TOKEN_OP_ITEM=<1p-item-name>" >&2
+    echo -e "    (you can optionally set PRC_BB_TOKEN_OP_FIELD=<1p-item-field>, which defaults to 'password')\n" >&2
+    exit 1
+  fi
+fi
+
+PR_URL=$(echo $PRC_BB_REPO_URI \
+  | sed -E "s%(https://|ssh://git@)([a-zA-Z0-9\-\.]*)(:7999|/bitbucket/scm)/([a-z]*)/([a-z-]*)%https://\2/bitbucket/rest/api/latest/projects/\4/repos/\5/pull-requests%" \
+  | sed -E "s/.git$//g")
+
+if [ "$1" == "-l" -o "$1" == "-L" ]; then
+  curl -s -H "Authorization: Bearer ${PRC_BB_TOKEN}" "${PR_URL}?state=OPEN&limit=200" \
+    | jq -r "[.values[]] \
+      | sort_by(.$(test "${1}" == "-l" && echo "updatedDate" || echo "id")) \
+      | reverse[] \
+      | [(.id|tostring),.author.user.displayName,.title[0:40]+(if .title|length > 41 then \"...\" else \"\" end)] \
+      | join(\"\t\")" \
+    | cat <(echo -e "PR #\tAuthor\tPR Title") - \
+    | column -ts$'\t'
+else
+  if [[ ! "${1}" =~ ^[0-9]{1,9}$ ]]; then
+    echo -e "\nUse:\n"
+    echo -e "  ${0##*/} <pr-number>  # Output code block comments for <pr-number>"
+    echo -e "  ${0##*/} -l           # List PRs (sort by last activity)"
+    echo -e "  ${0##*/} -L           # List PRs (sort by creation time / PR number)\n"
+    exit 0
+  fi
+  curl -s -H "Authorization: Bearer ${PRC_BB_TOKEN}" \
+    "${PR_URL}/${1}/activities?start=0&limit=200" \
+    | jq -r "[.values[] \
+      | select(.user.name == \"${PRC_BB_FILTER_USER}\")] \
+      | sort_by(.id)[] \
+      | .comment.text" \
+    | sed -E 's/^```diff$/```/g' \
+    | awk '/^```$/{f=!f;next}f'
+fi
