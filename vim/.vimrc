@@ -48,6 +48,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ckipp01/nvim-jenkinsfile-linter'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'voldikss/vim-floaterm'
 
 if has("nvim-0.5")
   Plug 'hrsh7th/nvim-compe'
@@ -223,6 +224,9 @@ noremap <leader>gy :lua require("gitlinker").get_repo_url()<cr>
 noremap <leader>gB :lua require("gitlinker").get_repo_url({action_callback = require("gitlinker.actions").open_in_browser})<cr>
 nnoremap <leader>gb :lua require("gitlinker").get_buf_range_url("n", {action_callback = require("gitlinker.actions").open_in_browser})<cr>
 vnoremap <leader>gb :lua require("gitlinker").get_buf_range_url("v", {action_callback = require("gitlinker.actions").open_in_browser})<cr>
+
+" Floaterm
+nnoremap <silent> <leader>L :FloatermNew --height=0.99 --width=0.99 --wintype=float --autoclose=2 lazygit<cr>
 
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 

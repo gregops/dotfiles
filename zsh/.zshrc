@@ -68,7 +68,7 @@ KEYTIMEOUT=1
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -159,6 +159,14 @@ alias gco="git checkout"
 alias gt="git tag"
 alias gb="git rev-parse --abbrev-ref HEAD"
 alias gr="git remote -v"
+alias lg="lazygit"
+
+gpoo() {
+  local branch="$(git rev-parse --abbrev-ref HEAD)"
+  local pr_url="$(git push --set-upstream origin ${branch} 2>&1 | grep 'remote:   https:' | cut -f2- -d: | tr -d ' ')"
+  echo "PR URL - ${pr_url}"
+  open "${pr_url}"
+}
 
 # Vagrant aliases
 alias vp="vagrant provision"
@@ -186,6 +194,7 @@ alias di="docker images"
 alias dps="docker ps"
 alias c=clear
 alias dockerprune="docker image prune --force && docker system prune -a -f --volumes"
+alias pwdcopy="pwd | tr -d '\n' | pbcopy"
 
 export TERRAGRUNT_DOWNLOAD=${HOME}/.terragrunt-cache
 export TF_PLUGIN_CACHE_DIR=${HOME}/.terraform.d/plugin-cache
@@ -245,8 +254,7 @@ g() {
   grep -Iirl --exclude-dir node_modules --exclude-dir .terragrunt-cache --exclude-dir .terraform --exclude *.svg --exclude *.plist --exclude package-lock.json --exclude yarn.lock --exclude .gitignore "$@" . | fzf -0 --bind "enter:execute(nvim {})" --preview 'bat --style=numbers --color=always --line-range :500 {}'
 }
 
-gl ()
-{
+gl() {
   git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"  | \
    fzf --ansi --no-sort --reverse --tiebreak=index --preview \
    'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
@@ -315,14 +323,13 @@ kgetall() {
   done
 }
 
-# Use: ssm <aws-profile-name>/<ec2-instance-name-tag-value> (first one found
-# will be picked if multiple instances match)
+# Use: ssm <aws-profile-name>/<ec2-instance-name-tag-value> <index>
 function ssm() {
   profile=${1%%/*}
   name=${1##*/}
   instance_id=$(aws --profile ${profile} ec2 describe-instances \
     --filter "Name=tag:Name,Values=${name}" \
-    --query "Reservations[].Instances[?State.Name == 'running'].InstanceId[]|[0]" \
+    --query "Reservations[].Instances[?State.Name == 'running'].InstanceId[]|[${2:-0}]" \
     --output text)
   test "${instance_id}" == "None" \
     && (echo "Could not find any instance matching '${name}' in '${profile}' account"; return;) \
